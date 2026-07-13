@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#26132d">
+  <title>Encontro de Mulheres | Reserva de Convites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Parisienne&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --wine: #241126;
+      --wine-2: #3a183b;
+      --rose: #d85879;
+      --rose-light: #f19aaa;
+      --gold: #d8aa58;
+      --cream: #fffaf6;
+      --paper: #fffefd;
+      --text: #302432;
+      --muted: #746a75;
+      --green: #25843d;
+      --line: #eedfe2;
+      --shadow: 0 20px 60px rgba(64, 27, 54, .12);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Montserrat", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 28%, rgba(241,154,170,.16), transparent 24%),
+        radial-gradient(circle at 92% 62%, rgba(216,170,88,.10), transparent 25%),
+        #fffaf8;
+    }
+
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .container { width: min(1180px, calc(100% - 34px)); margin: 0 auto; }
+
+    .hero {
+      min-height: 720px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(25,10,29,.98) 0%, rgba(37,15,40,.92) 42%, rgba(43,18,45,.40) 72%, rgba(43,18,45,.22) 100%),
+        url("https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&w=1800&q=88") center 32% / cover no-repeat;
+    }
+
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(216,170,88,.52);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::before { width: 580px; height: 580px; right: -280px; top: -250px; }
+    .hero::after { width: 760px; height: 760px; left: -610px; bottom: -570px; }
+
+    .hero-inner {
+      min-height: 720px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+      z-index: 2;
+      padding: 60px 0 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #f5cf86;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .eyebrow::before { content: "♕"; font-size: 22px; }
+
+    .event-title {
+      font-family: "Parisienne", "Brush Script MT", cursive;
+      font-size: clamp(70px, 9vw, 128px);
+      font-weight: 400;
+      line-height: .72;
+      letter-spacing: 0;
+      max-width: 720px;
+      margin: 20px 0 34px;
+      text-shadow: 0 10px 35px rgba(0,0,0,.35);
+    }
+    .event-title span { display: block; color: var(--rose-light); margin-left: 78px; }
+
+    .hero-subtitle {
+      max-width: 660px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      letter-spacing: .5px;
+      line-height: 1.35;
+      margin-bottom: 34px;
+      color: #fff8f5;
+    }
+
+    .hero-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .hero-info-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 17px;
+      min-height: 68px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(25,10,29,.48);
+      backdrop-filter: blur(8px);
+      border-radius: 15px;
+    }
+    .hero-info-item.address { max-width: 400px; }
+    .hero-icon {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      border: 1px solid rgba(216,170,88,.72);
+      color: #f2c46d;
+      font-size: 20px;
+    }
+    .hero-info-item small { display: block; color: #dbcfd9; font-size: 11px; margin-bottom: 4px; }
+    .hero-info-item strong { display: block; font-size: 14px; line-height: 1.4; }
+
+    .cta {
+      border: 0;
+      border-radius: 15px;
+      padding: 17px 28px;
+      color: white;
+      font-weight: 800;
+      font-size: 15px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      background: linear-gradient(135deg, #d34b70, #ed8d9f);
+      box-shadow: 0 14px 34px rgba(211,75,112,.32);
+      transition: .2s ease;
+    }
+    .cta:hover { transform: translateY(-2px); filter: brightness(1.04); }
+
+    .verse-card {
+      position: absolute;
+      right: 0;
+      bottom: 56px;
+      width: 330px;
+      padding: 26px;
+      border-radius: 22px;
+      background: rgba(32,12,34,.66);
+      border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 55px rgba(0,0,0,.25);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      line-height: 1.35;
+    }
+    .verse-card b { display: block; color: var(--rose-light); font-family: "Montserrat"; font-size: 13px; margin-top: 12px; }
+
+    .benefits {
+      background: white;
+      border-bottom: 1px solid var(--line);
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 26px 0;
+    }
+    .benefit { display: grid; grid-template-columns: 54px 1fr; gap: 13px; align-items: center; padding: 8px; }
+    .benefit-icon {
+      width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
+      color: var(--gold); font-size: 23px;
+      border: 1px solid rgba(216,170,88,.55);
+      background: linear-gradient(145deg, #fff, #fff4f5);
+    }
+    .benefit strong { display: block; font-size: 13px; margin-bottom: 5px; text-transform: uppercase; }
+    .benefit span { color: var(--muted); font-size: 12px; line-height: 1.45; }
+
+    .main-section { padding: 54px 0 68px; }
+    .section-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 22px; align-items: start; }
+    .card {
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 30px;
+    }
+    .card-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 31px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .card-title::after { content: ""; display: block; width: 44px; height: 2px; background: var(--rose); margin-top: 8px; }
+    .card-intro { color: var(--muted); font-size: 13px; line-height: 1.55; margin: 12px 0 20px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    label { display: block; font-size: 11px; font-weight: 800; color: #564b56; text-transform: uppercase; margin: 14px 0 7px; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #e2d8dc;
+      border-radius: 12px;
+      padding: 14px 15px;
+      outline: none;
+      color: var(--text);
+      background: white;
+      transition: .2s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(216,88,121,.10); }
+
+    .quantity-row { display: grid; grid-template-columns: 1fr 170px; gap: 13px; align-items: end; }
+    .price-chip {
+      min-height: 48px; padding: 13px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: #fff1f3; color: var(--rose); font-weight: 700; font-size: 13px;
+      border: 1px solid #f2d3da;
+    }
+    .total-box {
+      margin: 18px 0;
+      padding: 19px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fff8f8, #fff0f3);
+      border: 1px solid #f0d0d7;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .total-box span { color: var(--muted); font-size: 13px; }
+    .total-box strong { font-size: 29px; color: var(--rose); }
+    .submit-btn, .copy-btn, .whatsapp-btn {
+      width: 100%; border: 0; border-radius: 13px; padding: 16px 18px;
+      font-weight: 800; transition: .2s; text-align: center; text-decoration: none; display: block;
+    }
+    .submit-btn { color: white; background: linear-gradient(135deg, #c94269, #e87890); box-shadow: 0 12px 30px rgba(201,66,105,.22); }
+    .submit-btn:hover, .copy-btn:hover, .whatsapp-btn:hover { transform: translateY(-2px); filter: brightness(1.04); }
+    .secure { margin-top: 13px; text-align: center; color: #8b828a; font-size: 11px; }
+
+    .summary-card { margin-bottom: 18px; }
+    .summary-list { margin-top: 20px; }
+    .summary-line { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 9px 0; font-size: 13px; }
+    .summary-line b { color: #4b3d49; }
+    .summary-line span { color: var(--muted); line-height: 1.45; }
+    .summary-total { margin-top: 12px; padding-top: 17px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-weight: 800; }
+    .summary-total strong { color: var(--rose); font-size: 23px; }
+
+    .pix-card h3 { font-size: 18px; margin-bottom: 8px; }
+    .pix-card > p { color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .pix-content { display: grid; grid-template-columns: 155px 1fr; gap: 17px; align-items: center; margin-top: 18px; }
+    .qr-placeholder {
+      width: 155px; aspect-ratio: 1; border-radius: 14px; border: 1px solid #efd1d8;
+      display: grid; place-items: center; text-align: center; padding: 14px;
+      background: repeating-linear-gradient(45deg, #fff, #fff 7px, #fff5f7 7px, #fff5f7 14px);
+      color: #645761; font-size: 12px; font-weight: 700;
+    }
+    .pix-key { background: #fff2f4; border: 1px solid #efd1d8; border-radius: 11px; padding: 13px; color: var(--rose); font-size: 12px; font-weight: 700; word-break: break-all; margin: 8px 0; }
+    .copy-btn { background: #f3e5e8; color: #593d4c; padding: 12px; }
+    .pix-area { display: none; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .success-message { color: var(--green); font-weight: 800; margin-bottom: 10px; }
+    .whatsapp-btn { background: linear-gradient(135deg, #218438, #37a24f); color: white; margin-top: 12px; }
+
+    .after-payment {
+      margin-top: 22px;
+      border: 1px solid #efcdd5;
+      background: linear-gradient(90deg, #fff7f8, #fff0f2);
+      border-radius: 18px;
+      padding: 22px;
+      display: grid; grid-template-columns: 62px 1fr auto; gap: 18px; align-items: center;
+    }
+    .after-icon { width: 62px; height: 62px; border: 2px solid var(--rose); border-radius: 50%; display: grid; place-items: center; color: var(--rose); font-size: 25px; }
+    .after-payment h3 { font-size: 16px; margin-bottom: 4px; }
+    .after-payment p { font-size: 12px; color: var(--muted); line-height: 1.55; }
+    .after-payment .whatsapp-btn { width: 320px; margin: 0; }
+
+    .admin-card { margin-top: 24px; }
+    .admin-toggle { width: 100%; border: 0; background: none; display: flex; justify-content: space-between; align-items: center; color: var(--text); }
+    .admin-content { display: none; margin-top: 24px; }
+    .admin-content.open { display: block; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
+    .metric { padding: 16px; border-radius: 14px; background: #fff7f8; border: 1px solid #f0dfe3; }
+    .metric small { display: block; color: var(--muted); font-size: 11px; margin-bottom: 6px; }
+    .metric strong { font-size: 21px; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    th, td { padding: 12px; border-bottom: 1px solid #efe4e7; text-align: left; font-size: 12px; }
+    th { color: #8a6671; text-transform: uppercase; font-size: 10px; letter-spacing: .6px; }
+    .status { display: inline-block; padding: 6px 9px; border-radius: 999px; background: #fff0dc; color: #93611f; font-weight: 800; }
+    .mini-btn { border: 0; border-radius: 8px; padding: 7px 9px; font-size: 11px; font-weight: 700; margin: 2px; }
+    .confirm-btn { background: #e4f6e8; color: #267c3c; }
+    .delete-btn { background: #fee8ea; color: #b3384a; }
+    .empty { color: var(--muted); text-align: center; padding: 24px; }
+
+    footer { background: #251126; color: white; padding: 35px 0 25px; }
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; align-items: center; }
+    .footer-brand { font-family: "Parisienne", cursive; font-size: 35px; color: #f3b4c0; }
+    .footer-copy { color: #d8cad6; font-size: 12px; line-height: 1.7; }
+    .footer-verse { font-family: "Cormorant Garamond", serif; font-size: 20px; color: #f6d7dc; }
+    .copyright { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); text-align: center; font-size: 10px; color: #bcaeb9; }
+
+    @media (max-width: 980px) {
+      .verse-card { display: none; }
+      .section-grid { grid-template-columns: 1fr; }
+      .hero { background-position: 62% center; }
+      .hero-inner { min-height: 680px; }
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+      .after-payment { grid-template-columns: 62px 1fr; }
+      .after-payment .whatsapp-btn { width: 100%; grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 650px) {
+      .container { width: min(100% - 24px, 1180px); }
+      .hero { min-height: 700px; background-position: 65% center; }
+      .hero-inner { min-height: 700px; justify-content: flex-end; padding-bottom: 38px; }
+      .event-title { font-size: 72px; margin-bottom: 24px; }
+      .event-title span { margin-left: 35px; }
+      .hero-subtitle { font-size: 20px; max-width: 95%; }
+      .hero-info { display: grid; grid-template-columns: 1fr; width: 100%; }
+      .hero-info-item, .hero-info-item.address { max-width: none; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .benefit { grid-template-columns: 44px 1fr; }
+      .benefit-icon { width: 44px; height: 44px; }
+      .main-section { padding: 34px 0 45px; }
+      .card { padding: 22px 18px; }
+      .form-row, .quantity-row, .pix-content, .footer-grid { grid-template-columns: 1fr; }
+      .qr-placeholder { margin: auto; }
+      .summary-line { grid-template-columns: 100px 1fr; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .after-payment { grid-template-columns: 1fr; text-align: center; }
+      .after-icon { margin: auto; }
+      .footer-grid { text-align: center; }
+    }
+  
+    .qr-generated { width: 155px; min-height: 155px; display:grid; place-items:center; background:#fff; border:1px solid #eadfe3; border-radius:16px; padding:8px; }
+    .qr-generated img { width:100%; height:auto; display:block; border-radius:8px; }
+    .payment-code { margin-top:12px; padding:11px 12px; border-radius:11px; background:#f7f0f8; color:#5a3760; font-size:11px; word-break:break-all; line-height:1.45; display:none; }
+    .timer-box { display:none; margin:14px 0 10px; padding:14px; border-radius:14px; background:linear-gradient(135deg,#3a183b,#6c2d70); color:white; text-align:center; box-shadow:0 12px 28px rgba(58,24,59,.18); }
+    .timer-box strong { display:block; margin-top:4px; font-size:27px; letter-spacing:1px; color:#f3d99a; }
+    .timer-box.expired { background:linear-gradient(135deg,#7a2538,#a84056); }
+    .reservation-code { margin:10px 0; font-weight:800; color:#6b3465; }
+
+
+    .admin-dashboard-grid{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:12px;margin-bottom:16px}
+    .admin-stat{padding:14px;border-radius:16px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14)}
+    .admin-stat small{display:block;color:rgba(255,255,255,.72);font:12px Arial,sans-serif;margin-bottom:6px}
+    .admin-stat strong{font:700 22px Georgia,serif;color:#f3d99a}
+    .admin-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+    .admin-toolbar input{flex:1;min-width:220px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:#fff;outline:none}
+    .admin-toolbar input::placeholder{color:rgba(255,255,255,.48)}
+    .admin-table-wrap{overflow:auto;border-radius:16px}
+    .admin-table{width:100%;border-collapse:collapse;min-width:980px;background:rgba(255,255,255,.05)}
+    .admin-table th,.admin-table td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,.10);text-align:left;font:13px Arial,sans-serif}
+    .admin-table th{color:#f3d99a;font-weight:800;background:rgba(0,0,0,.10);position:sticky;top:0}
+    .status-badge{display:inline-block;padding:6px 9px;border-radius:999px;font-weight:800;font-size:12px}
+    .status-pendente{background:#fff3cd;color:#7b5b00}
+    .status-confirmado{background:#d8f3dc;color:#245b2b}
+    .status-cancelado{background:#f8d7da;color:#7f1d1d}
+    .admin-actions{display:flex;gap:6px;flex-wrap:wrap}
+    .admin-action-btn{border:0;border-radius:9px;padding:7px 9px;cursor:pointer;font:700 12px Arial,sans-serif}
+    .btn-confirm{background:#d8f3dc;color:#245b2b}
+    .btn-pending{background:#fff3cd;color:#7b5b00}
+    .btn-cancel{background:#f8d7da;color:#7f1d1d}
+    .btn-delete{background:#3b1b46;color:#fff}
+    .btn-edit{background:#e7d7ff;color:#4a2564}
+    .btn-whatsapp{background:#d8f6e2;color:#176533}
+    .empty-admin{padding:25px;text-align:center;color:rgba(255,255,255,.72)}
+    @media(max-width:780px){.admin-dashboard-grid{grid-template-columns:repeat(2,1fr)}}
+
+</style>
+
+<style>
+  .admin-tabs{
+    display:flex;gap:9px;flex-wrap:wrap;margin:0 0 18px
+  }
+  .admin-tab{
+    border:1px solid #eadce4;border-radius:12px;padding:11px 15px;
+    background:#fff;color:#5c475d;font-size:12px;font-weight:800
+  }
+  .admin-tab.active{
+    color:#fff;border-color:transparent;
+    background:linear-gradient(135deg,#6f2f7d,#d85879);
+    box-shadow:0 10px 24px rgba(111,47,125,.18)
+  }
+  .admin-view{display:none}
+  .admin-view.active{display:block;animation:adminFade .25s ease}
+  .event-config-card{
+    border:1px solid var(--line);border-radius:20px;padding:22px;background:#fff;
+  }
+  .event-config-card h3{
+    font-family:"Cormorant Garamond",serif;font-size:27px;margin-bottom:5px
+  }
+  .event-config-card>p{color:var(--muted);font-size:12px;line-height:1.55;margin-bottom:18px}
+  .config-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .config-grid .full{grid-column:1/-1}
+  .config-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .config-save,.config-preview{
+    border:0;border-radius:13px;padding:14px 18px;font-weight:800
+  }
+  .config-save{
+    color:#fff;background:linear-gradient(135deg,#c94269,#e87890);
+    box-shadow:0 10px 26px rgba(201,66,105,.20)
+  }
+  .config-preview{background:#f3e5e8;color:#593d4c}
+  .config-message{
+    display:none;margin-top:14px;padding:12px 14px;border-radius:12px;font-size:12px;font-weight:800
+  }
+  .config-message.ok{display:block;background:#e1f5e6;color:#246f38}
+  .config-message.error{display:block;background:#fee4e8;color:#9f3047}
+  .vacancy-card{
+    margin-top:16px;border-radius:18px;padding:18px;
+    background:linear-gradient(135deg,#fff7f8,#fff2ed);border:1px solid #efdfe2
+  }
+  .vacancy-line{display:flex;justify-content:space-between;gap:16px;align-items:center}
+  .vacancy-line strong{font-size:24px;color:var(--rose)}
+  .vacancy-bar{height:11px;background:#f0e4e8;border-radius:999px;overflow:hidden;margin-top:12px}
+  .vacancy-fill{height:100%;width:0;background:linear-gradient(90deg,#d85879,#d8aa58);transition:.35s ease}
+  @media(max-width:700px){
+    .config-grid{grid-template-columns:1fr}
+    .config-grid .full{grid-column:auto}
+  }
+</style>
+
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="eyebrow">Evento especial</div>
+      <h1 class="event-title">Encontro de <span>Mulheres</span></h1>
+      <p class="hero-subtitle">Um tempo de comunhão, adoração, palavra e transformação na presença de Deus.</p>
+
+      <div class="hero-info">
+        <div class="hero-info-item">
+          <div class="hero-icon">▣</div>
+          <div><small>Data</small><strong>28 de Novembro</strong></div>
+        </div>
+        <div class="hero-info-item">
+          <div class="hero-icon">◷</div>
+          <div><small>Horário</small><strong>17h30</strong></div>
+        </div>
+        <div class="hero-info-item address">
+          <div class="hero-icon">⌖</div>
+          <div><small>Local do evento</small><strong>Av. Padre Arlindo Vieira, 3389 – Pq Bristol – São Paulo – SP</strong></div>
+        </div>
+      </div>
+
+      <a class="cta" href="#reserva">🎟 Reservar meu convite <span>→</span></a>
+
+      <div class="verse-card">
+        “Mulher virtuosa, quem a achará? O seu valor muito excede ao de rubis.”
+        <b>Provérbios 31:10</b>
+      </div>
+    </div>
+  </header>
+
+  <section class="benefits">
+    <div class="container benefits-grid">
+      <div class="benefit"><div class="benefit-icon">♡</div><div><strong>Comunhão</strong><span>Um tempo especial entre mulheres.</span></div></div>
+      <div class="benefit"><div class="benefit-icon">✝</div><div><strong>Palavra</strong><span>Ministração que edifica e transforma.</span></div></div>
+      <div class="benefit"><div class="benefit-icon">♬</div><div><strong>Adoração</strong><span>Momentos de louvor e aproximação de Deus.</span></div></div>
+      <div class="benefit"><div class="benefit-icon">♕</div><div><strong>Propósito</strong><span>Descubra o que Deus preparou para você.</span></div></div>
+    </div>
+  </section>
+
+  <main class="main-section" id="reserva">
+    <div class="container">
+      <div class="section-grid">
+        <section class="card">
+          <h2 class="card-title">Faça sua reserva</h2>
+          <p class="card-intro">Preencha seus dados para reservar o convite. Após o pagamento, envie o comprovante pelo WhatsApp.</p>
+
+          <form id="reservationForm">
+            <div class="form-row">
+              <div><label for="name">Nome completo</label><input id="name" type="text" placeholder="Digite seu nome completo" required></div>
+              <div><label for="phone">WhatsApp</label><input id="phone" type="tel" placeholder="(11) 99999-9999" required></div>
+            </div>
+
+            <label for="email">E-mail opcional</label>
+            <input id="email" type="email" placeholder="seuemail@exemplo.com">
+
+            <div class="quantity-row">
+              <div>
+                <label for="quantity">Quantidade de convites</label>
+                <select id="quantity">
+                  <option value="1">1 convite</option><option value="2">2 convites</option><option value="3">3 convites</option>
+                  <option value="4">4 convites</option><option value="5">5 convites</option><option value="6">6 convites</option>
+                </select>
+              </div>
+              <div class="price-chip">R$ 100,00 cada</div>
+            </div>
+
+            <label for="note">Observação opcional</label>
+            <textarea id="note" rows="3" placeholder="Ex.: nome das acompanhantes"></textarea>
+
+            <div class="total-box"><span>Valor total da reserva</span><strong id="totalText">R$ 100,00</strong></div>
+            <button class="submit-btn" type="submit">CONTINUAR PARA PAGAMENTO 🔒</button>
+            <div class="secure">🛡 Seus dados ficam salvos somente neste dispositivo.</div>
+          </form>
+        </section>
+
+        <aside>
+          <section class="card summary-card">
+            <h2 class="card-title">Resumo da reserva</h2>
+            <div class="summary-list">
+              <div class="summary-line"><b>Evento:</b><span>Encontro de Mulheres</span></div>
+              <div class="summary-line"><b>Data:</b><span>28 de Novembro às 17h30</span></div>
+              <div class="summary-line"><b>Local:</b><span>Av. Padre Arlindo Vieira, 3389 – Pq Bristol – São Paulo – SP</span></div>
+              <div class="summary-line"><b>Quantidade:</b><span id="summaryQuantity">1 convite</span></div>
+            </div>
+            <div class="summary-total"><span>Total:</span><strong id="summaryTotal">R$ 100,00</strong></div>
+          </section>
+
+          <section class="card pix-card">
+            <h3>Pagamento via Pix</h3>
+            <p>Faça o Pix pelo aplicativo do seu banco ou Mercado Pago. Depois, envie o comprovante para confirmar a reserva.</p>
+            <div class="pix-content">
+              <div class="qr-generated" id="qrGenerated"><span>O QR Code será gerado após a reserva.</span></div>
+              <div>
+                <small>Chave Pix (Mercado Pago)</small>
+                <div class="pix-key" id="pixKeyText">(11) 94559-3558</div>
+                <button class="copy-btn" type="button" onclick="copyPixKey()">Copiar chave Pix</button><button class="copy-btn" id="copyPixCodeButton" style="margin-top:8px;display:none" type="button" onclick="copyPixCode()">Copiar Pix copia e cola</button><div class="payment-code" id="paymentCode"></div>
+              </div>
+            </div>
+            <div class="pix-area" id="pixArea">
+              <div class="success-message">✓ Reserva criada com sucesso!</div><div class="reservation-code" id="reservationCodeText"></div><div class="timer-box" id="paymentTimer">Tempo para concluir o pagamento<strong id="timerText">10:00</strong></div>
+              <p>Sua reserva ficará pendente até a confirmação manual do pagamento.</p>
+              <a class="whatsapp-btn" id="whatsLink" href="#" target="_blank" rel="noopener">Enviar comprovante pelo WhatsApp</a>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <section class="after-payment">
+        <div class="after-icon">☎</div>
+        <div><h3>Após o pagamento</h3><p>Envie o comprovante pelo WhatsApp para confirmar sua reserva. Você receberá a confirmação após a conferência do pagamento.</p></div>
+        <a class="whatsapp-btn" id="bottomWhatsLink" href="#reserva">Reservar e enviar comprovante</a>
+      </section>
+
+      <section class="card admin-card">
+        <button class="admin-toggle" type="button" onclick="toggleAdmin()">
+          <span><strong>Painel administrativo</strong><br><small>Consulte e confirme as reservas deste aparelho.</small></span>
+          <span id="adminArrow">▼</span>
+        </button>
+        <div class="admin-content" id="adminContent">
+          <div class="metrics">
+            <div class="metric"><small>Reservas</small><strong id="metricReservations">0</strong></div>
+            <div class="metric"><small>Convites</small><strong id="metricTickets">0</strong></div>
+            <div class="metric"><small>Confirmados</small><strong id="metricConfirmed">0</strong></div>
+            <div class="metric"><small>Total reservado</small><strong id="metricAmount">R$ 0,00</strong></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Nome</th><th>WhatsApp</th><th>Qtd.</th><th>Valor</th><th>Status</th><th>Ações</th></tr></thead>
+              <tbody id="reservationList"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><div class="footer-brand">Encontro de Mulheres</div><div class="footer-copy">Um evento de fé, comunhão e transformação.</div></div>
+        <div class="footer-copy"><strong>Sobre o evento</strong><br>Um tempo preparado para mulheres que desejam viver algo novo na presença de Deus.</div>
+        <div class="footer-verse">“Pois você é preciosa e digna de honra aos meus olhos, e eu amo você.”<br><small>Isaías 43:4</small></div>
+      </div>
+      <div class="copyright">© 2026 Encontro de Mulheres. Todos os direitos reservados.</div>
+    </div>
+  </footer>
+
+  
+<style>
+  .admin-card { display: none; }
+  .admin-card.admin-visible { display: block; animation: adminFade .3s ease; }
+
+  #adminAccessButton {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 9997;
+    border: 1px solid rgba(255,255,255,.30);
+    border-radius: 999px;
+    padding: 12px 18px;
+    color: #fff;
+    font-weight: 800;
+    background: linear-gradient(135deg, rgba(91,36,122,.94), rgba(216,88,121,.92));
+    box-shadow: 0 14px 38px rgba(49,20,73,.30);
+    backdrop-filter: blur(14px);
+    transition: .25s ease;
+  }
+  #adminAccessButton:hover { transform: translateY(-2px); }
+
+  #adminLoginOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    background:
+      radial-gradient(circle at 15% 15%, rgba(241,154,170,.30), transparent 30%),
+      radial-gradient(circle at 85% 12%, rgba(216,170,88,.20), transparent 28%),
+      linear-gradient(135deg, rgba(28,10,33,.88), rgba(76,28,80,.86));
+    backdrop-filter: blur(14px);
+  }
+  #adminLoginOverlay.open { display: flex; }
+
+  .admin-login-card {
+    width: min(440px, 100%);
+    padding: 34px;
+    border-radius: 28px;
+    color: #fff;
+    background: linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+    border: 1px solid rgba(255,255,255,.25);
+    box-shadow: 0 30px 80px rgba(0,0,0,.38);
+    animation: adminCardIn .35s ease;
+  }
+  .admin-login-card h2 {
+    font-family: "Cormorant Garamond", serif;
+    text-align: center;
+    font-size: 31px;
+    margin-bottom: 6px;
+  }
+  .admin-login-card p {
+    text-align: center;
+    color: rgba(255,255,255,.76);
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+  .admin-login-card label { color: #fff; }
+  .admin-login-card input {
+    background: rgba(255,255,255,.11);
+    border-color: rgba(255,255,255,.25);
+    color: #fff;
+  }
+  .admin-login-card input::placeholder { color: rgba(255,255,255,.48); }
+  .admin-login-actions {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .admin-login-actions button {
+    border: 0;
+    border-radius: 13px;
+    padding: 14px;
+    font-weight: 800;
+  }
+  #adminLoginCancel {
+    background: rgba(255,255,255,.11);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.16);
+  }
+  #adminLoginSubmit {
+    background: linear-gradient(135deg, #f4d99b, #d8aa58);
+    color: #3a183b;
+  }
+  #adminLoginError {
+    min-height: 19px;
+    text-align: center;
+    color: #ffd2dc;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .admin-head-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+  .admin-head-actions button {
+    border: 0;
+    border-radius: 11px;
+    padding: 11px 14px;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .admin-exit {
+    background: linear-gradient(135deg, #d85879, #783687);
+    color: #fff;
+  }
+
+  .admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .admin-stat {
+    padding: 16px;
+    border-radius: 15px;
+    background: #fff7f8;
+    border: 1px solid #f0dfe3;
+  }
+  .admin-stat small {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 7px;
+  }
+  .admin-stat strong { font-size: 22px; color: var(--wine-2); }
+  .admin-toolbar { display: flex; gap: 10px; margin-bottom: 15px; }
+  .admin-toolbar input { flex: 1; }
+  .admin-table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 15px; }
+  .admin-table { min-width: 1080px; background: #fff; }
+  .status-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .status-pendente { background: #fff0dc; color: #93611f; }
+  .status-confirmado { background: #e0f4e4; color: #24733a; }
+  .status-cancelado { background: #fee4e8; color: #a32e46; }
+  .admin-actions { display: flex; gap: 5px; flex-wrap: wrap; }
+  .admin-action-btn {
+    border: 0;
+    border-radius: 8px;
+    padding: 7px 9px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .btn-confirm { background: #e0f4e4; color: #24733a; }
+  .btn-pending { background: #fff0dc; color: #8a5a16; }
+  .btn-cancel { background: #fee4e8; color: #a32e46; }
+  .btn-edit { background: #eee3f7; color: #633278; }
+  .btn-delete { background: #3a183b; color: #fff; }
+  .btn-whatsapp { background: #dbf5e3; color: #176a35; }
+  .empty-admin { text-align: center; padding: 28px; color: var(--muted); }
+  .connection-status {
+    margin-bottom: 14px;
+    padding: 10px 13px;
+    border-radius: 11px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #fff4db;
+    color: #775110;
+  }
+  .connection-status.ok { background: #e2f5e6; color: #246f38; }
+  .connection-status.error { background: #fee5e8; color: #9f3047; }
+
+  @keyframes adminCardIn {
+    from { opacity: 0; transform: translateY(18px) scale(.98); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes adminFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media(max-width:780px) {
+    #adminAccessButton { top: 10px; right: 10px; padding: 10px 13px; font-size: 12px; }
+    .admin-dashboard-grid { grid-template-columns: repeat(2,1fr); }
+    .admin-login-card { padding: 28px 20px; }
+  }
+</style>
+
+<button id="adminAccessButton" type="button">⚙ Painel Administrativo</button>
+
+<div id="adminLoginOverlay">
+  <div class="admin-login-card">
+    <h2>Área administrativa</h2>
+    <p>Entre com o e-mail e a senha cadastrados no Supabase.</p>
+
+    <label for="adminEmail">E-mail</label>
+    <input id="adminEmail" type="email" autocomplete="username" placeholder="seuemail@exemplo.com">
+
+    <label for="adminPassword">Senha</label>
+    <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Digite sua senha">
+
+    <div class="admin-login-actions">
+      <button id="adminLoginCancel" type="button">Cancelar</button>
+      <button id="adminLoginSubmit" type="button">Entrar no painel</button>
+    </div>
+    <div id="adminLoginError"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  const SUPABASE_URL = "https://vgeafuabzgznaygusiqe.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_ugRokC7oGHhgNQk_BAZ3LQ_V5ctj1n-";
+  const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  let EVENT = {
+    id: null,
+    name: "Encontro de Mulheres",
+    description: "",
+    dateISO: "2026-11-28",
+    time: "17:30",
+    date: "28 de Novembro às 17h30",
+    address: "Av. Padre Arlindo Vieira, 3389 - Pq Bristol - São Paulo - SP",
+    ticketPrice: 100,
+    pixKey: "(11) 94559-3558",
+    organizerWhatsApp: "5511945593558",
+    verse: "Mulher virtuosa, quem a achará? O seu valor muito excede ao de rubis.",
+    verseReference: "Provérbios 31:10",
+    limit: 300
+  };
+
+  let currentPixPayload = "";
+  let currentReservation = null;
+  let paymentTimerInterval = null;
+  let adminReservations = [];
+
+  const currency = value =>
+    Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+  const safe = value => String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  })[char]);
+
+  const normalizePhone = phone => {
+    const digits = String(phone || "").replace(/\D/g, "");
+    return digits.startsWith("55") ? digits : "55" + digits;
+  };
+
+  function updateSummary() {
+    const quantity = Number(document.getElementById("quantity").value);
+    const total = quantity * EVENT.ticketPrice;
+    document.getElementById("totalText").textContent = currency(total);
+    document.getElementById("summaryQuantity").textContent =
+      quantity + (quantity === 1 ? " convite" : " convites");
+    document.getElementById("summaryTotal").textContent = currency(total);
+  }
+
+  function copyPixKey() {
+    navigator.clipboard.writeText(EVENT.pixKey)
+      .then(() => alert("Chave Pix copiada!"))
+      .catch(() => prompt("Copie a chave Pix:", EVENT.pixKey));
+  }
+
+  function copyPixCode() {
+    if (!currentPixPayload) return;
+    navigator.clipboard.writeText(currentPixPayload)
+      .then(() => alert("Código Pix copia e cola copiado!"))
+      .catch(() => prompt("Copie o código Pix:", currentPixPayload));
+  }
+
+  function startPaymentTimer() {
+    clearInterval(paymentTimerInterval);
+    let remaining = 10 * 60;
+    const box = document.getElementById("paymentTimer");
+    const text = document.getElementById("timerText");
+    box.style.display = "block";
+    box.classList.remove("expired");
+
+    const draw = () => {
+      const minutes = String(Math.floor(remaining / 60)).padStart(2, "0");
+      const seconds = String(remaining % 60).padStart(2, "0");
+      text.textContent = `${minutes}:${seconds}`;
+
+      if (remaining <= 0) {
+        clearInterval(paymentTimerInterval);
+        box.classList.add("expired");
+        return;
+      }
+      remaining--;
+    };
+
+    draw();
+    paymentTimerInterval = setInterval(draw, 1000);
+  }
+
+  function emvField(id, value) {
+    return id + String(value.length).padStart(2, "0") + value;
+  }
+
+  function crc16(payload) {
+    let crc = 0xFFFF;
+    for (let i = 0; i < payload.length; i++) {
+      crc ^= payload.charCodeAt(i) << 8;
+      for (let j = 0; j < 8; j++) {
+        crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1);
+        crc &= 0xFFFF;
+      }
+    }
+    return crc.toString(16).toUpperCase().padStart(4, "0");
+  }
+
+  function normalizePixPhone(value) {
+    const digits = String(value || "").replace(/\D/g, "");
+    if (!digits) return "";
+    return digits.startsWith("55") ? "+" + digits : "+55" + digits;
+  }
+
+  function pixPayload(amount) {
+    const gui = emvField("00", "BR.GOV.BCB.PIX");
+    const key = emvField("01", normalizePixPhone(EVENT.pixKey));
+    const merchantAccount = emvField("26", gui + key);
+    const name = EVENT.name
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^A-Za-z0-9 ]/g, "")
+      .toUpperCase().slice(0, 25) || "EVENTO";
+    const city = "SAO PAULO";
+    const additional = emvField("62", emvField("05", "***"));
+
+    const base =
+      emvField("00", "01") +
+      merchantAccount +
+      emvField("52", "0000") +
+      emvField("53", "986") +
+      emvField("54", Number(amount).toFixed(2)) +
+      emvField("58", "BR") +
+      emvField("59", name) +
+      emvField("60", city) +
+      additional +
+      "6304";
+
+    return base + crc16(base);
+  }
+
+  async function showPix(quantity) {
+    const amount = quantity * EVENT.ticketPrice;
+    currentPixPayload = pixPayload(amount);
+
+    const qrContainer = document.getElementById("qrGenerated");
+    qrContainer.innerHTML = "";
+
+    try {
+      new QRCode(qrContainer, {
+        text: currentPixPayload,
+        width: 220,
+        height: 220,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.M
+      });
+
+      const generatedImage = qrContainer.querySelector("img");
+      if (generatedImage) {
+        generatedImage.alt = `QR Code Pix de ${currency(amount)}`;
+        generatedImage.style.width = "100%";
+        generatedImage.style.height = "auto";
+      }
+
+      const generatedCanvas = qrContainer.querySelector("canvas");
+      if (generatedCanvas) {
+        generatedCanvas.style.width = "100%";
+        generatedCanvas.style.height = "auto";
+      }
+    } catch (error) {
+      console.error("Erro ao gerar QR Code:", error);
+      qrContainer.textContent = "Não foi possível gerar o QR Code.";
+    }
+
+    document.getElementById("paymentCode").textContent = currentPixPayload;
+    document.getElementById("paymentCode").style.display = "block";
+    document.getElementById("copyPixCodeButton").style.display = "block";
+  }
+
+  function reservationCode() {
+    return "EM-" + Date.now().toString().slice(-7) + Math.floor(10 + Math.random() * 90);
+  }
+
+
+  function formatEventDate(dateISO, timeValue) {
+    const date = new Date(dateISO + "T12:00:00");
+    const dateText = date.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long"
+    }).replace(/^0/, "");
+    return `${dateText.charAt(0).toUpperCase() + dateText.slice(1)} às ${String(timeValue).slice(0,5).replace(":", "h")}`;
+  }
+
+  function applyEventToPage() {
+    document.title = `${EVENT.name} | Reserva de Convites`;
+
+    const title = document.querySelector(".event-title");
+    if (title) {
+      const words = EVENT.name.trim().split(/\s+/);
+      const last = words.pop() || "";
+      title.innerHTML = `${safe(words.join(" "))} <span>${safe(last)}</span>`;
+    }
+
+    const subtitle = document.querySelector(".hero-subtitle");
+    if (subtitle && EVENT.description) subtitle.textContent = EVENT.description;
+
+    const infoStrong = document.querySelectorAll(".hero-info-item strong");
+    if (infoStrong[0]) infoStrong[0].textContent = EVENT.date.split(" às ")[0];
+    if (infoStrong[1]) infoStrong[1].textContent = EVENT.time.replace(":", "h");
+    if (infoStrong[2]) infoStrong[2].textContent = EVENT.address;
+
+    const verseCard = document.querySelector(".verse-card");
+    if (verseCard) {
+      verseCard.innerHTML = `“${safe(EVENT.verse)}”<b>${safe(EVENT.verseReference)}</b>`;
+    }
+
+    const summaryLines = document.querySelectorAll(".summary-line span");
+    if (summaryLines[0]) summaryLines[0].textContent = EVENT.name;
+    if (summaryLines[1]) summaryLines[1].textContent = EVENT.date;
+    if (summaryLines[2]) summaryLines[2].textContent = EVENT.address;
+
+    const priceChip = document.querySelector(".price-chip");
+    if (priceChip) priceChip.textContent = `${currency(EVENT.ticketPrice)} cada`;
+
+    const pixKeyText = document.getElementById("pixKeyText");
+    if (pixKeyText) pixKeyText.textContent = EVENT.pixKey;
+
+    document.querySelectorAll(".footer-brand").forEach(el => el.textContent = EVENT.name);
+    updateSummary();
+  }
+
+  async function loadActiveEvent() {
+    const { data, error } = await db
+      .from("eventos")
+      .select("*")
+      .eq("ativo", true)
+      .order("criado_em", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    if (error) {
+      console.error("Erro ao carregar evento:", error);
+      alert("O sistema abriu, mas não conseguiu buscar o evento ativo no Supabase.");
+      return;
+    }
+
+    if (!data) {
+      alert("Nenhum evento ativo foi encontrado no Supabase.");
+      return;
+    }
+
+    EVENT = {
+      id: data.id,
+      name: data.nome,
+      description: data.descricao || "",
+      dateISO: data.data_evento,
+      time: String(data.horario || "17:30").slice(0,5),
+      date: formatEventDate(data.data_evento, data.horario || "17:30"),
+      address: data.endereco,
+      ticketPrice: Number(data.valor_convite || 0),
+      pixKey: data.chave_pix,
+      organizerWhatsApp: String(data.whatsapp || "").replace(/\D/g, ""),
+      verse: data.versiculo || "",
+      verseReference: data.referencia_versiculo || "",
+      limit: data.limite_vagas
+    };
+
+    applyEventToPage();
+  }
+
+  document.getElementById("quantity").addEventListener("change", updateSummary);
+
+  document.getElementById("reservationForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const button = event.currentTarget.querySelector(".submit-btn");
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = "SALVANDO RESERVA...";
+
+    try {
+      const nome = document.getElementById("name").value.trim();
+      const whatsapp = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim() || null;
+      const quantidade = Number(document.getElementById("quantity").value);
+      const observacao = document.getElementById("note").value.trim() || null;
+      const valor_total = quantidade * EVENT.ticketPrice;
+      const codigo = reservationCode();
+
+      const { error } = await db
+        .from("reservas")
+        .insert({
+          evento_id: EVENT.id,
+          codigo,
+          nome,
+          whatsapp,
+          email,
+          quantidade,
+          valor_total,
+          observacao,
+          status: "Pendente"
+        });
+
+      if (error) throw error;
+
+      currentReservation = {
+        evento_id: EVENT.id,
+        codigo,
+        nome,
+        whatsapp,
+        email,
+        quantidade,
+        valor_total,
+        observacao,
+        status: "Pendente"
+      };
+      await showPix(quantidade);
+      startPaymentTimer();
+
+      document.getElementById("reservationCodeText").textContent =
+        `Código da reserva: ${codigo}`;
+      document.getElementById("pixArea").style.display = "block";
+
+      const message = encodeURIComponent(
+        `Olá! Fiz uma reserva para o ${EVENT.name}.\n\n` +
+        `Código: ${codigo}\n` +
+        `Nome: ${nome}\n` +
+        `WhatsApp: ${whatsapp}\n` +
+        `Quantidade: ${quantidade}\n` +
+        `Valor total: ${currency(valor_total)}\n\n` +
+        `Estou enviando o comprovante do pagamento.`
+      );
+
+      document.getElementById("whatsLink").href =
+        `https://wa.me/${EVENT.organizerWhatsApp}?text=${message}`;
+
+      document.getElementById("pixArea").scrollIntoView({ behavior: "smooth", block: "center" });
+    } catch (error) {
+      console.error(error);
+      alert("Não foi possível salvar a reserva no Supabase. Verifique a internet e tente novamente.\n\nDetalhe: " + error.message);
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+  });
+
+  const adminCard = document.querySelector(".admin-card");
+  const adminContent = document.getElementById("adminContent");
+  const adminArrow = document.getElementById("adminArrow");
+  const loginOverlay = document.getElementById("adminLoginOverlay");
+  const loginError = document.getElementById("adminLoginError");
+
+  function openLogin() {
+    loginOverlay.classList.add("open");
+    loginError.textContent = "";
+    document.getElementById("adminEmail").focus();
+  }
+
+  function closeLogin() {
+    loginOverlay.classList.remove("open");
+    document.getElementById("adminPassword").value = "";
+    loginError.textContent = "";
+  }
+
+  async function openAdmin() {
+    adminCard.classList.add("admin-visible");
+    adminContent.classList.add("open");
+    adminArrow.textContent = "▲";
+    document.getElementById("adminAccessButton").textContent = "✓ Painel aberto";
+    await loadReservations();
+    adminCard.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  async function loginAdmin() {
+    const email = document.getElementById("adminEmail").value.trim();
+    const password = document.getElementById("adminPassword").value;
+
+    loginError.textContent = "Entrando...";
+
+    const { error } = await db.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      loginError.textContent = "E-mail ou senha inválidos.";
+      return;
+    }
+
+    closeLogin();
+    await openAdmin();
+  }
+
+  async function logoutAdmin() {
+    await db.auth.signOut();
+    adminCard.classList.remove("admin-visible");
+    adminContent.classList.remove("open");
+    adminArrow.textContent = "▼";
+    document.getElementById("adminAccessButton").textContent = "⚙ Painel Administrativo";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  window.toggleAdmin = async function() {
+    const { data: { session } } = await db.auth.getSession();
+    session ? openAdmin() : openLogin();
+  };
+
+  document.getElementById("adminAccessButton").addEventListener("click", toggleAdmin);
+  document.getElementById("adminLoginCancel").addEventListener("click", closeLogin);
+  document.getElementById("adminLoginSubmit").addEventListener("click", loginAdmin);
+  document.getElementById("adminPassword").addEventListener("keydown", event => {
+    if (event.key === "Enter") loginAdmin();
+  });
+  loginOverlay.addEventListener("click", event => {
+    if (event.target === loginOverlay) closeLogin();
+  });
+
+  function confirmationMessage(reservation) {
+    const firstName = String(reservation.nome || "Participante").trim().split(/\s+/)[0];
+    return `Olá, ${firstName}! 🌷
+
+Seu pagamento foi confirmado com sucesso. Sua reserva para o Encontro de Mulheres está garantida.
+
+Código da reserva: ${reservation.codigo}
+Quantidade de convites: ${reservation.quantidade}
+Valor confirmado: ${currency(reservation.valor_total)}
+Data: 28 de Novembro, às 17h30.
+
+Estamos felizes em receber você. Deus abençoe!`;
+  }
+
+  async function loadReservations() {
+    const statusBox = document.getElementById("supabaseStatus");
+    if (statusBox) {
+      statusBox.className = "connection-status";
+      statusBox.textContent = "Carregando reservas do Supabase...";
+    }
+
+    const { data, error } = await db
+      .from("reservas")
+      .select("*")
+      .eq("evento_id", EVENT.id)
+      .order("criado_em", { ascending: false });
+
+    if (error) {
+      if (statusBox) {
+        statusBox.className = "connection-status error";
+        statusBox.textContent = "Erro ao carregar reservas: " + error.message;
+      }
+      return;
+    }
+
+    adminReservations = data || [];
+    renderAdmin();
+  }
+
+  window.adminSetStatus = async function(id, status, sendWhatsapp = false) {
+    const { error } = await db
+      .from("reservas")
+      .update({ status, atualizado_em: new Date().toISOString() })
+      .eq("id", id);
+
+    if (error) return alert("Erro ao atualizar: " + error.message);
+
+    const reservation = adminReservations.find(item => item.id === id);
+    await loadReservations();
+
+    if (sendWhatsapp && reservation) {
+      window.open(
+        `https://wa.me/${normalizePhone(reservation.whatsapp)}?text=${encodeURIComponent(confirmationMessage(reservation))}`,
+        "_blank"
+      );
+    }
+  };
+
+  window.adminSendConfirmation = function(id) {
+    const reservation = adminReservations.find(item => item.id === id);
+    if (!reservation) return;
+    window.open(
+      `https://wa.me/${normalizePhone(reservation.whatsapp)}?text=${encodeURIComponent(confirmationMessage(reservation))}`,
+      "_blank"
+    );
+  };
+
+  window.adminEdit = async function(id) {
+    const reservation = adminReservations.find(item => item.id === id);
+    if (!reservation) return;
+
+    const nome = prompt("Nome da participante:", reservation.nome || "");
+    if (nome === null) return;
+
+    const whatsapp = prompt("WhatsApp:", reservation.whatsapp || "");
+    if (whatsapp === null) return;
+
+    const quantityInput = prompt("Quantidade de convites:", reservation.quantidade || 1);
+    if (quantityInput === null) return;
+
+    const quantidade = Math.max(1, Math.min(20, parseInt(quantityInput, 10) || 1));
+
+    const { error } = await db
+      .from("reservas")
+      .update({
+        nome: nome.trim(),
+        whatsapp: whatsapp.trim(),
+        quantidade,
+        valor_total: quantidade * EVENT.ticketPrice,
+        atualizado_em: new Date().toISOString()
+      })
+      .eq("id", id);
+
+    if (error) return alert("Erro ao editar: " + error.message);
+    await loadReservations();
+  };
+
+  window.adminDelete = async function(id) {
+    const reservation = adminReservations.find(item => item.id === id);
+    if (!reservation) return;
+    if (!confirm(`Excluir definitivamente a reserva de ${reservation.nome}?`)) return;
+
+    const { error } = await db.from("reservas").delete().eq("id", id);
+    if (error) return alert("Erro ao excluir: " + error.message);
+    await loadReservations();
+  };
+
+  function renderAdmin() {
+    const currentSearch = document.getElementById("adminSearch")?.value || "";
+    const currentTab = document.querySelector(".admin-tab.active")?.dataset.view || "reservas";
+    const term = currentSearch.trim().toLowerCase();
+
+    const filtered = adminReservations.filter(item =>
+      `${item.codigo || ""} ${item.nome || ""} ${item.whatsapp || ""} ${item.status || ""}`
+        .toLowerCase().includes(term)
+    );
+
+    const confirmed = adminReservations.filter(item => item.status === "Confirmado");
+    const canceled = adminReservations.filter(item => item.status === "Cancelado");
+    const pending = adminReservations.filter(item => item.status === "Pendente");
+    const reservedTickets = adminReservations
+      .filter(item => item.status !== "Cancelado")
+      .reduce((sum,item) => sum + Number(item.quantidade || 0), 0);
+    const available = EVENT.limit ? Math.max(0, EVENT.limit - reservedTickets) : null;
+    const occupancy = EVENT.limit ? Math.min(100, (reservedTickets / EVENT.limit) * 100) : 0;
+
+    adminContent.innerHTML = `
+      <div id="supabaseStatus" class="connection-status ok">Conectado ao Supabase.</div>
+
+      <div class="admin-head-actions">
+        <button class="admin-exit" id="adminRefresh">Atualizar reservas</button>
+        <button class="admin-exit" id="adminLogout">Sair do painel</button>
+      </div>
+
+      <div class="admin-tabs">
+        <button class="admin-tab ${currentTab === "reservas" ? "active" : ""}" data-view="reservas">👥 Reservas</button>
+        <button class="admin-tab ${currentTab === "configuracoes" ? "active" : ""}" data-view="configuracoes">⚙ Configurações do Evento</button>
+      </div>
+
+      <div id="adminViewReservas" class="admin-view ${currentTab === "reservas" ? "active" : ""}">
+        <div class="admin-dashboard-grid">
+          <div class="admin-stat"><small>Reservas</small><strong>${adminReservations.length}</strong></div>
+          <div class="admin-stat"><small>Convites</small><strong>${reservedTickets}</strong></div>
+          <div class="admin-stat"><small>Confirmadas</small><strong>${confirmed.length}</strong></div>
+          <div class="admin-stat"><small>Pendentes / canceladas</small><strong>${pending.length} / ${canceled.length}</strong></div>
+          <div class="admin-stat"><small>Valor recebido</small><strong>${currency(confirmed.reduce((sum,item) => sum + Number(item.valor_total || 0), 0))}</strong></div>
+        </div>
+
+        <div class="vacancy-card">
+          <div class="vacancy-line">
+            <div>
+              <small style="color:var(--muted)">Controle de vagas</small>
+              <div style="margin-top:5px;font-weight:800">${EVENT.limit ? `${reservedTickets} de ${EVENT.limit} vagas ocupadas` : "Sem limite definido"}</div>
+            </div>
+            <strong>${available === null ? "∞" : available}</strong>
+          </div>
+          <div class="vacancy-bar"><div class="vacancy-fill" style="width:${occupancy}%"></div></div>
+        </div>
+
+        <div class="admin-toolbar" style="margin-top:16px">
+          <input id="adminSearch" type="search" placeholder="Pesquisar nome, WhatsApp, código ou status" value="${safe(currentSearch)}">
+        </div>
+
+        <div class="admin-table-wrap">
+          ${filtered.length ? `
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Código</th><th>Nome</th><th>WhatsApp</th><th>Qtd.</th>
+                  <th>Valor</th><th>Status</th><th>Data</th><th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${filtered.map(item => {
+                  const statusClass = item.status === "Confirmado" ? "status-confirmado" :
+                    item.status === "Cancelado" ? "status-cancelado" : "status-pendente";
+
+                  let buttons = "";
+                  if (item.status === "Confirmado") {
+                    buttons = `
+                      <button class="admin-action-btn btn-pending" onclick="adminSetStatus(${item.id},'Pendente')">Pendente</button>
+                      <button class="admin-action-btn btn-cancel" onclick="adminSetStatus(${item.id},'Cancelado')">Cancelar</button>
+                      <button class="admin-action-btn btn-whatsapp" onclick="adminSendConfirmation(${item.id})">WhatsApp</button>`;
+                  } else if (item.status === "Cancelado") {
+                    buttons = `
+                      <button class="admin-action-btn btn-pending" onclick="adminSetStatus(${item.id},'Pendente')">Reativar</button>
+                      <button class="admin-action-btn btn-confirm" onclick="adminSetStatus(${item.id},'Confirmado',true)">Confirmar + WhatsApp</button>`;
+                  } else {
+                    buttons = `
+                      <button class="admin-action-btn btn-confirm" onclick="adminSetStatus(${item.id},'Confirmado',true)">Confirmar + WhatsApp</button>
+                      <button class="admin-action-btn btn-cancel" onclick="adminSetStatus(${item.id},'Cancelado')">Cancelar</button>`;
+                  }
+
+                  return `<tr>
+                    <td>${safe(item.codigo || "-")}</td>
+                    <td>${safe(item.nome || "-")}</td>
+                    <td>${safe(item.whatsapp || "-")}</td>
+                    <td>${Number(item.quantidade || 1)}</td>
+                    <td>${currency(item.valor_total)}</td>
+                    <td><span class="status-badge ${statusClass}">${safe(item.status || "Pendente")}</span></td>
+                    <td>${item.criado_em ? new Date(item.criado_em).toLocaleString("pt-BR") : "-"}</td>
+                    <td><div class="admin-actions">
+                      ${buttons}
+                      <button class="admin-action-btn btn-edit" onclick="adminEdit(${item.id})">Editar</button>
+                      <button class="admin-action-btn btn-delete" onclick="adminDelete(${item.id})">Excluir</button>
+                    </div></td>
+                  </tr>`;
+                }).join("")}
+              </tbody>
+            </table>` :
+            `<div class="empty-admin">Nenhuma reserva encontrada.</div>`
+          }
+        </div>
+      </div>
+
+      <div id="adminViewConfiguracoes" class="admin-view ${currentTab === "configuracoes" ? "active" : ""}">
+        <div class="event-config-card">
+          <h3>Configurações do Evento</h3>
+          <p>Altere as informações abaixo e salve. O site público será atualizado a partir do Supabase.</p>
+
+          <div class="config-grid">
+            <div class="full">
+              <label for="cfgNome">Nome do evento</label>
+              <input id="cfgNome" value="${safe(EVENT.name)}">
+            </div>
+
+            <div class="full">
+              <label for="cfgDescricao">Descrição</label>
+              <textarea id="cfgDescricao" rows="3">${safe(EVENT.description)}</textarea>
+            </div>
+
+            <div>
+              <label for="cfgData">Data</label>
+              <input id="cfgData" type="date" value="${safe(EVENT.dateISO)}">
+            </div>
+
+            <div>
+              <label for="cfgHorario">Horário</label>
+              <input id="cfgHorario" type="time" value="${safe(EVENT.time)}">
+            </div>
+
+            <div class="full">
+              <label for="cfgEndereco">Endereço</label>
+              <input id="cfgEndereco" value="${safe(EVENT.address)}">
+            </div>
+
+            <div>
+              <label for="cfgValor">Valor do convite</label>
+              <input id="cfgValor" type="number" min="0" step="0.01" value="${Number(EVENT.ticketPrice)}">
+            </div>
+
+            <div>
+              <label for="cfgVagas">Limite de vagas</label>
+              <input id="cfgVagas" type="number" min="1" value="${EVENT.limit || ""}">
+            </div>
+
+            <div>
+              <label for="cfgPix">Chave Pix</label>
+              <input id="cfgPix" value="${safe(EVENT.pixKey)}">
+            </div>
+
+            <div>
+              <label for="cfgWhatsApp">WhatsApp</label>
+              <input id="cfgWhatsApp" value="${safe(EVENT.organizerWhatsApp)}">
+            </div>
+
+            <div class="full">
+              <label for="cfgVersiculo">Versículo</label>
+              <textarea id="cfgVersiculo" rows="3">${safe(EVENT.verse)}</textarea>
+            </div>
+
+            <div class="full">
+              <label for="cfgReferencia">Referência do versículo</label>
+              <input id="cfgReferencia" value="${safe(EVENT.verseReference)}">
+            </div>
+          </div>
+
+          <div class="config-actions">
+            <button class="config-save" id="saveEventConfig">Salvar configurações</button>
+            <button class="config-preview" id="previewEventConfig">Pré-visualizar no site</button>
+          </div>
+          <div id="configMessage" class="config-message"></div>
+        </div>
+      </div>
+    `;
+
+    document.querySelectorAll(".admin-tab").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".admin-tab").forEach(item => item.classList.remove("active"));
+        document.querySelectorAll(".admin-view").forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        document.getElementById(
+          button.dataset.view === "reservas" ? "adminViewReservas" : "adminViewConfiguracoes"
+        ).classList.add("active");
+      });
+    });
+
+    const search = document.getElementById("adminSearch");
+    if (search) search.addEventListener("input", renderAdmin);
+
+    document.getElementById("adminLogout").addEventListener("click", logoutAdmin);
+    document.getElementById("adminRefresh").addEventListener("click", loadReservations);
+
+    const saveConfig = document.getElementById("saveEventConfig");
+    if (saveConfig) saveConfig.addEventListener("click", saveEventConfiguration);
+
+    const previewConfig = document.getElementById("previewEventConfig");
+    if (previewConfig) previewConfig.addEventListener("click", previewEventConfiguration);
+  }
+
+  function readConfigForm() {
+    return {
+      nome: document.getElementById("cfgNome").value.trim(),
+      descricao: document.getElementById("cfgDescricao").value.trim(),
+      data_evento: document.getElementById("cfgData").value,
+      horario: document.getElementById("cfgHorario").value,
+      endereco: document.getElementById("cfgEndereco").value.trim(),
+      valor_convite: Number(document.getElementById("cfgValor").value || 0),
+      limite_vagas: document.getElementById("cfgVagas").value
+        ? Number(document.getElementById("cfgVagas").value)
+        : null,
+      chave_pix: document.getElementById("cfgPix").value.trim(),
+      whatsapp: document.getElementById("cfgWhatsApp").value.replace(/\D/g, ""),
+      versiculo: document.getElementById("cfgVersiculo").value.trim(),
+      referencia_versiculo: document.getElementById("cfgReferencia").value.trim()
+    };
+  }
+
+  function validateEventConfig(config) {
+    if (!config.nome) return "Informe o nome do evento.";
+    if (!config.data_evento) return "Informe a data do evento.";
+    if (!config.horario) return "Informe o horário.";
+    if (!config.endereco) return "Informe o endereço.";
+    if (config.valor_convite < 0) return "O valor do convite não pode ser negativo.";
+    if (!config.chave_pix) return "Informe a chave Pix.";
+    if (!config.whatsapp) return "Informe o WhatsApp.";
+    return "";
+  }
+
+  function applyConfigObject(config) {
+    EVENT = {
+      ...EVENT,
+      name: config.nome,
+      description: config.descricao,
+      dateISO: config.data_evento,
+      time: config.horario,
+      date: formatEventDate(config.data_evento, config.horario),
+      address: config.endereco,
+      ticketPrice: config.valor_convite,
+      limit: config.limite_vagas,
+      pixKey: config.chave_pix,
+      organizerWhatsApp: config.whatsapp,
+      verse: config.versiculo,
+      verseReference: config.referencia_versiculo
+    };
+    applyEventToPage();
+  }
+
+  function previewEventConfiguration() {
+    const config = readConfigForm();
+    const validation = validateEventConfig(config);
+    const message = document.getElementById("configMessage");
+
+    if (validation) {
+      message.className = "config-message error";
+      message.textContent = validation;
+      return;
+    }
+
+    applyConfigObject(config);
+    message.className = "config-message ok";
+    message.textContent = "Pré-visualização aplicada apenas nesta tela. Clique em Salvar para gravar no Supabase.";
+    document.querySelector(".hero").scrollIntoView({ behavior: "smooth" });
+  }
+
+  async function saveEventConfiguration() {
+    const config = readConfigForm();
+    const validation = validateEventConfig(config);
+    const message = document.getElementById("configMessage");
+
+    if (validation) {
+      message.className = "config-message error";
+      message.textContent = validation;
+      return;
+    }
+
+    message.className = "config-message";
+    message.style.display = "block";
+    message.textContent = "Salvando configurações...";
+
+    const { error } = await db
+      .from("eventos")
+      .update({
+        ...config,
+        atualizado_em: new Date().toISOString()
+      })
+      .eq("id", EVENT.id);
+
+    if (error) {
+      message.className = "config-message error";
+      message.textContent = "Erro ao salvar: " + error.message;
+      return;
+    }
+
+    applyConfigObject(config);
+    message.className = "config-message ok";
+    message.textContent = "Configurações salvas com sucesso no Supabase.";
+    await loadReservations();
+  }
+
+  document.getElementById("bottomWhatsLink").addEventListener("click", event => {
+    event.preventDefault();
+    document.getElementById("reserva").scrollIntoView({ behavior: "smooth" });
+  });
+
+  loadActiveEvent().catch(console.error);
+
+  db.auth.getSession().then(({ data: { session } }) => {
+    if (session) document.getElementById("adminAccessButton").textContent = "⚙ Painel Administrativo";
+  });
+</script>
+
+</body>
+</html>
