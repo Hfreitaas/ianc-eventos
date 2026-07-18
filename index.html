@@ -376,6 +376,26 @@
     .empty-admin{padding:25px;text-align:center;color:rgba(255,255,255,.72)}
     @media(max-width:780px){.admin-dashboard-grid{grid-template-columns:repeat(2,1fr)}}
 
+
+    .payment-methods { margin: 18px 0 4px; }
+    .payment-methods-title { display:block; font-size:11px; font-weight:800; color:#564b56; text-transform:uppercase; margin-bottom:8px; }
+    .payment-options { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .payment-option { position:relative; border:1px solid #e6d9de; border-radius:16px; padding:16px; background:#fff; cursor:pointer; transition:.22s ease; min-height:112px; }
+    .payment-option:hover { transform:translateY(-2px); box-shadow:0 12px 28px rgba(64,27,54,.09); }
+    .payment-option.selected { border-color:var(--rose); box-shadow:0 0 0 3px rgba(216,88,121,.10); background:linear-gradient(145deg,#fff,#fff7f8); }
+    .payment-option input { position:absolute; opacity:0; pointer-events:none; }
+    .payment-option-head { display:flex; align-items:center; gap:10px; margin-bottom:7px; }
+    .payment-option-icon { width:38px; height:38px; border-radius:12px; display:grid; place-items:center; background:#f7edf0; font-size:20px; }
+    .payment-option strong { font-size:14px; }
+    .payment-option p { color:var(--muted); font-size:11px; line-height:1.45; }
+    .payment-secure-badge { display:inline-flex; align-items:center; gap:5px; margin-top:8px; padding:5px 8px; border-radius:999px; background:#e9f7ed; color:#26723b; font-size:10px; font-weight:800; }
+    .installment-note { margin-top:9px; color:#8b828a; font-size:10px; line-height:1.45; }
+    .card-payment-content { display:none; margin-top:18px; padding:18px; border-radius:15px; border:1px solid #dfe8f5; background:linear-gradient(135deg,#f7fbff,#eef5ff); }
+    .card-payment-content h4 { margin-bottom:7px; font-size:16px; }
+    .card-payment-content p { color:var(--muted); font-size:12px; line-height:1.55; }
+    .card-payment-status { margin-top:12px; padding:12px; border-radius:11px; background:#fff; color:#36516f; font-size:12px; font-weight:700; }
+    @media(max-width:650px){ .payment-options{grid-template-columns:1fr;} }
+
 </style>
 
 <style>
@@ -492,10 +512,28 @@
                 <label for="quantity">Quantidade de convites</label>
                 <select id="quantity">
                   <option value="1">1 convite</option><option value="2">2 convites</option><option value="3">3 convites</option>
-                  <option value="4">4 convites</option><option value="5">5 convites</option><option value="6">6 convites</option>
+                  <option value="4">4 convites</option>
                 </select>
               </div>
               <div class="price-chip">R$ 100,00 cada</div>
+            </div>
+
+            <div class="payment-methods">
+              <span class="payment-methods-title">Forma de pagamento</span>
+              <div class="payment-options">
+                <label class="payment-option selected" id="paymentOptionPix">
+                  <input type="radio" name="paymentMethod" value="Pix" checked>
+                  <div class="payment-option-head"><span class="payment-option-icon">⚡</span><strong>Pix</strong></div>
+                  <p>Pagamento instantâneo via QR Code ou Pix Copia e Cola.</p>
+                </label>
+                <label class="payment-option" id="paymentOptionCard">
+                  <input type="radio" name="paymentMethod" value="Cartão de crédito">
+                  <div class="payment-option-head"><span class="payment-option-icon">💳</span><strong>Cartão de Crédito</strong></div>
+                  <p>Pagamento processado com segurança pelo Mercado Pago.</p>
+                  <span class="payment-secure-badge">🔒 Pagamento seguro via Mercado Pago</span>
+                </label>
+              </div>
+              <p class="installment-note">Cartão de crédito disponível com parcelamento. Eventuais juros e acréscimos serão apresentados pelo Mercado Pago e pagos pelo comprador.</p>
             </div>
 
             <label for="note">Observação opcional</label>
@@ -522,13 +560,18 @@
           <section class="card pix-card">
             <h3>Pagamento via Pix</h3>
             <p>Faça o Pix pelo aplicativo do seu banco ou Mercado Pago. Depois, envie o comprovante para confirmar a reserva.</p>
-            <div class="pix-content">
+            <div class="pix-content" id="pixPaymentContent">
               <div class="qr-generated" id="qrGenerated"><span>O QR Code será gerado após a reserva.</span></div>
               <div>
                 <small>Chave Pix (Mercado Pago)</small>
                 <div class="pix-key" id="pixKeyText">(11) 94559-3558</div>
                 <button class="copy-btn" type="button" onclick="copyPixKey()">Copiar chave Pix</button><button class="copy-btn" id="copyPixCodeButton" style="margin-top:8px;display:none" type="button" onclick="copyPixCode()">Copiar Pix copia e cola</button><div class="payment-code" id="paymentCode"></div>
               </div>
+            </div>
+            <div class="card-payment-content" id="cardPaymentContent">
+              <h4>Pagamento com cartão</h4>
+              <p>Após salvar a reserva, o Mercado Pago será aberto em uma nova guia com o valor correspondente à quantidade escolhida.</p>
+              <div class="card-payment-status" id="cardPaymentStatus">Selecione Cartão de Crédito e conclua sua reserva.</div>
             </div>
             <div class="pix-area" id="pixArea">
               <div class="success-message">✓ Reserva criada com sucesso!</div><div class="reservation-code" id="reservationCodeText"></div><div class="timer-box" id="paymentTimer">Tempo para concluir o pagamento<strong id="timerText">10:00</strong></div>
@@ -818,6 +861,12 @@
   let currentReservation = null;
   let paymentTimerInterval = null;
   let adminReservations = [];
+  const PAYMENT_LINKS = {
+    1: "https://mpago.la/2rkMWD9",
+    2: "https://mpago.la/1YQAzDE",
+    3: "https://mpago.la/1FAJFFA",
+    4: "https://mpago.la/1pwtBSY"
+  };
 
   const currency = value =>
     Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -831,6 +880,29 @@
     return digits.startsWith("55") ? digits : "55" + digits;
   };
 
+  function selectedPaymentMethod() {
+    return document.querySelector('input[name="paymentMethod"]:checked')?.value || "Pix";
+  }
+
+  function paymentMethodFromReservation(item) {
+    const note = String(item?.observacao || "");
+    return note.includes("[Pagamento: Cartão de crédito]") ? "Cartão" : "Pix";
+  }
+
+  function updatePaymentUI() {
+    const method = selectedPaymentMethod();
+    const isCard = method === "Cartão de crédito";
+    document.getElementById("paymentOptionPix").classList.toggle("selected", !isCard);
+    document.getElementById("paymentOptionCard").classList.toggle("selected", isCard);
+    document.getElementById("pixPaymentContent").style.display = isCard ? "none" : "grid";
+    document.getElementById("cardPaymentContent").style.display = isCard ? "block" : "none";
+    const button = document.querySelector("#reservationForm .submit-btn");
+    if (button && !button.disabled) {
+      const quantity = Number(document.getElementById("quantity").value || 1);
+      button.textContent = isCard ? `PAGAR ${currency(quantity * EVENT.ticketPrice)} COM CARTÃO 🔒` : "CONTINUAR PARA PAGAMENTO PIX 🔒";
+    }
+  }
+
   function updateSummary() {
     const quantity = Number(document.getElementById("quantity").value);
     const total = quantity * EVENT.ticketPrice;
@@ -838,6 +910,7 @@
     document.getElementById("summaryQuantity").textContent =
       quantity + (quantity === 1 ? " convite" : " convites");
     document.getElementById("summaryTotal").textContent = currency(total);
+    updatePaymentUI();
   }
 
   function copyPixKey() {
@@ -1057,12 +1130,26 @@
   }
 
   document.getElementById("quantity").addEventListener("change", updateSummary);
+  document.querySelectorAll('input[name="paymentMethod"]').forEach(input =>
+    input.addEventListener("change", updatePaymentUI)
+  );
 
   document.getElementById("reservationForm").addEventListener("submit", async event => {
     event.preventDefault();
 
     const button = event.currentTarget.querySelector(".submit-btn");
     const originalText = button.textContent;
+    const formaPagamento = selectedPaymentMethod();
+    const quantidade = Number(document.getElementById("quantity").value);
+    const paymentLink = PAYMENT_LINKS[quantidade];
+    let paymentWindow = null;
+
+    if (formaPagamento === "Cartão de crédito") {
+      if (!paymentLink) return alert("Não existe link de cartão configurado para esta quantidade.");
+      paymentWindow = window.open("about:blank", "_blank");
+      if (paymentWindow) paymentWindow.document.write("<p style='font-family:Arial;padding:24px'>Preparando pagamento seguro pelo Mercado Pago...</p>");
+    }
+
     button.disabled = true;
     button.textContent = "SALVANDO RESERVA...";
 
@@ -1070,65 +1157,56 @@
       const nome = document.getElementById("name").value.trim();
       const whatsapp = document.getElementById("phone").value.trim();
       const email = document.getElementById("email").value.trim() || null;
-      const quantidade = Number(document.getElementById("quantity").value);
-      const observacao = document.getElementById("note").value.trim() || null;
+      const observacaoOriginal = document.getElementById("note").value.trim();
+      const marcadorPagamento = `[Pagamento: ${formaPagamento}]`;
+      const observacao = observacaoOriginal ? `${marcadorPagamento} ${observacaoOriginal}` : marcadorPagamento;
       const valor_total = quantidade * EVENT.ticketPrice;
       const codigo = reservationCode();
 
-      const { error } = await db
-        .from("reservas")
-        .insert({
-          evento_id: EVENT.id,
-          codigo,
-          nome,
-          whatsapp,
-          email,
-          quantidade,
-          valor_total,
-          observacao,
-          status: "Pendente"
-        });
-
+      const { error } = await db.from("reservas").insert({
+        evento_id: EVENT.id, codigo, nome, whatsapp, email, quantidade,
+        valor_total, observacao, status: "Pendente"
+      });
       if (error) throw error;
 
       currentReservation = {
-        evento_id: EVENT.id,
-        codigo,
-        nome,
-        whatsapp,
-        email,
-        quantidade,
-        valor_total,
-        observacao,
-        status: "Pendente"
+        evento_id: EVENT.id, codigo, nome, whatsapp, email, quantidade,
+        valor_total, observacao, forma_pagamento: formaPagamento, status: "Pendente"
       };
-      await showPix(quantidade);
-      startPaymentTimer();
 
-      document.getElementById("reservationCodeText").textContent =
-        `Código da reserva: ${codigo}`;
+      document.getElementById("reservationCodeText").textContent = `Código da reserva: ${codigo}`;
       document.getElementById("pixArea").style.display = "block";
+
+      if (formaPagamento === "Pix") {
+        await showPix(quantidade);
+        startPaymentTimer();
+      } else {
+        clearInterval(paymentTimerInterval);
+        document.getElementById("paymentTimer").style.display = "none";
+        document.getElementById("cardPaymentStatus").textContent =
+          `Reserva ${codigo} criada. Conclua o pagamento de ${currency(valor_total)} no Mercado Pago e depois envie o comprovante.`;
+        if (paymentWindow) paymentWindow.location.href = paymentLink;
+        else window.open(paymentLink, "_blank", "noopener,noreferrer");
+      }
 
       const message = encodeURIComponent(
         `Olá! Fiz uma reserva para o ${EVENT.name}.\n\n` +
-        `Código: ${codigo}\n` +
-        `Nome: ${nome}\n` +
-        `WhatsApp: ${whatsapp}\n` +
-        `Quantidade: ${quantidade}\n` +
-        `Valor total: ${currency(valor_total)}\n\n` +
-        `Estou enviando o comprovante do pagamento.`
+        `Código: ${codigo}\nNome: ${nome}\nWhatsApp: ${whatsapp}\n` +
+        `Quantidade: ${quantidade}\nValor total: ${currency(valor_total)}\n` +
+        `Forma de pagamento: ${formaPagamento}\n\nEstou enviando o comprovante do pagamento.`
       );
-
       document.getElementById("whatsLink").href =
         `https://wa.me/${EVENT.organizerWhatsApp}?text=${message}`;
 
       document.getElementById("pixArea").scrollIntoView({ behavior: "smooth", block: "center" });
     } catch (error) {
+      if (paymentWindow && !paymentWindow.closed) paymentWindow.close();
       console.error(error);
       alert("Não foi possível salvar a reserva no Supabase. Verifique a internet e tente novamente.\n\nDetalhe: " + error.message);
     } finally {
       button.disabled = false;
       button.textContent = originalText;
+      updatePaymentUI();
     }
   });
 
@@ -1313,7 +1391,7 @@ Estamos felizes em receber você. Deus abençoe!`;
     const term = currentSearch.trim().toLowerCase();
 
     const filtered = adminReservations.filter(item =>
-      `${item.codigo || ""} ${item.nome || ""} ${item.whatsapp || ""} ${item.status || ""}`
+      `${item.codigo || ""} ${item.nome || ""} ${item.whatsapp || ""} ${item.status || ""} ${paymentMethodFromReservation(item)}`
         .toLowerCase().includes(term)
     );
 
@@ -1369,7 +1447,7 @@ Estamos felizes em receber você. Deus abençoe!`;
               <thead>
                 <tr>
                   <th>Código</th><th>Nome</th><th>WhatsApp</th><th>Qtd.</th>
-                  <th>Valor</th><th>Status</th><th>Data</th><th>Ações</th>
+                  <th>Valor</th><th>Pagamento</th><th>Status</th><th>Data</th><th>Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -1399,6 +1477,7 @@ Estamos felizes em receber você. Deus abençoe!`;
                     <td>${safe(item.whatsapp || "-")}</td>
                     <td>${Number(item.quantidade || 1)}</td>
                     <td>${currency(item.valor_total)}</td>
+                    <td>${paymentMethodFromReservation(item) === "Cartão" ? "💳 Cartão" : "⚡ Pix"}</td>
                     <td><span class="status-badge ${statusClass}">${safe(item.status || "Pendente")}</span></td>
                     <td>${item.criado_em ? new Date(item.criado_em).toLocaleString("pt-BR") : "-"}</td>
                     <td><div class="admin-actions">
