@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#26132d">
   <title>Encontro de Mulheres | Reserva de Convites</title>
+
+  <meta name="description" content="Reserve seu convite para o Encontro de Mulheres — Portal da Transformação. Dia 28 de novembro, às 17h30, na Igreja Apostólica Nascendo em Cristo.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="IANC Eventos">
+  <meta property="og:title" content="Encontro de Mulheres | Portal da Transformação">
+  <meta property="og:description" content="Um tempo de comunhão, adoração, palavra e transformação na presença de Deus. Reserve seu convite.">
+  <meta property="og:url" content="https://ianceventos.com.br/">
+  <meta property="og:image" content="https://ianceventos.com.br/assets/compartilhamento-encontro-mulheres.jpg">
+  <meta property="og:image:secure_url" content="https://ianceventos.com.br/assets/compartilhamento-encontro-mulheres.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Convite do Encontro de Mulheres — Portal da Transformação">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Encontro de Mulheres | Portal da Transformação">
+  <meta name="twitter:description" content="Reserve seu convite para o Encontro de Mulheres da Igreja Apostólica Nascendo em Cristo.">
+  <meta name="twitter:image" content="https://ianceventos.com.br/assets/compartilhamento-encontro-mulheres.jpg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Parisienne&display=swap" rel="stylesheet">
@@ -395,6 +416,66 @@
     .card-payment-content p { color:var(--muted); font-size:12px; line-height:1.55; }
     .card-payment-status { margin-top:12px; padding:12px; border-radius:11px; background:#fff; color:#36516f; font-size:12px; font-weight:700; }
     @media(max-width:650px){ .payment-options{grid-template-columns:1fr;} }
+
+
+  /* CORREÇÃO FINAL MOBILE:
+     aproxima o conteúdo da imagem e elimina o grande espaço vazio */
+  @media (max-width: 650px) {
+    .hero {
+      min-height: 860px !important;
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(255, 249, 234, .08) 0%,
+          rgba(255, 249, 234, .18) 33%,
+          rgba(255, 249, 234, .74) 56%,
+          rgba(255, 249, 234, .98) 76%
+        ),
+        url("assets/portal-mobile.jpg") !important;
+      background-position: center top !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+    }
+
+    .hero-inner {
+      min-height: 860px !important;
+      justify-content: flex-start !important;
+      padding-top: 405px !important;
+      padding-bottom: 30px !important;
+    }
+
+    .eyebrow {
+      margin-bottom: 8px !important;
+    }
+
+    .event-title {
+      margin-top: 8px !important;
+      margin-bottom: 18px !important;
+    }
+
+    .hero-subtitle {
+      margin-bottom: 22px !important;
+    }
+
+    .hero-info {
+      margin-bottom: 22px !important;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .hero,
+    .hero-inner {
+      min-height: 820px !important;
+    }
+
+    .hero-inner {
+      padding-top: 375px !important;
+    }
+
+    .event-title {
+      font-size: 61px !important;
+    }
+  }
 
 </style>
 
