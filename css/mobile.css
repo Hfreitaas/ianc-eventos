@@ -48,6 +48,47 @@
 
   input, select, textarea, button { font-size: 16px; }
   .submit-btn, .primary-btn { min-height: 48px; }
+
+  /* IANC Eventos v2.1 — contraste de texto sobre a arte */
+  .eyebrow {
+    color: #6f430f !important;
+    font-weight: 800 !important;
+    text-shadow:
+      0 1px 0 rgba(255,255,255,.95),
+      0 2px 4px rgba(255,255,255,.85),
+      0 4px 12px rgba(70,38,10,.28) !important;
+  }
+
+  .event-title {
+    color: #5a3412 !important;
+    text-shadow:
+      0 1px 0 rgba(255,255,255,1),
+      0 2px 3px rgba(255,255,255,.92),
+      0 5px 12px rgba(70,38,10,.35),
+      0 10px 24px rgba(70,38,10,.18) !important;
+  }
+
+  .event-title span {
+    color: #a96b16 !important;
+    text-shadow:
+      0 1px 0 rgba(255,255,255,1),
+      0 2px 4px rgba(255,255,255,.90),
+      0 5px 14px rgba(82,48,12,.36) !important;
+  }
+
+  .hero-subtitle {
+    color: #4d351f !important;
+    font-weight: 600 !important;
+    text-shadow:
+      0 1px 0 rgba(255,255,255,1),
+      0 2px 4px rgba(255,255,255,.92),
+      0 5px 14px rgba(65,38,16,.30) !important;
+  }
+
+  .hero-info-item strong,
+  .hero-info-item small {
+    text-shadow: 0 1px 0 rgba(255,255,255,.9);
+  }
 }
 
 @media (max-width: 390px) {
