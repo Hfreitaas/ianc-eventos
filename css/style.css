@@ -854,3 +854,57 @@
     padding-top: 112px;
   }
 }
+
+/* =========================================================
+   IANC Eventos v2.8 — ícones elegantes e nova paleta
+   ========================================================= */
+.hero-icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  font-size: 0;
+}
+
+.hero-info-item {
+  grid-template-columns: 46px 1fr;
+}
+
+.hero-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.attire-palette {
+  grid-template-columns: repeat(6, minmax(74px, auto)) !important;
+  gap: 12px !important;
+}
+
+.attire-palette .tone {
+  grid-template-rows: 52px auto !important;
+  min-width: 74px;
+}
+
+.attire-palette .tone i {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 9px !important;
+}
+
+/* Tons extraídos da referência enviada */
+.tone-1 i { background: #f4e4ca !important; }
+.tone-2 i { background: #f3d7af !important; }
+.tone-3 i { background: #e3c48d !important; }
+.tone-4 i { background: #dbaf6e !important; }
+.tone-5 i { background: #c5995a !important; }
+.tone-6 i { background: #b1874d !important; }
+
+@media (min-width: 901px) {
+  .hero-info-item.attire {
+    max-width: 720px;
+  }
+}
