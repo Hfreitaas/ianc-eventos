@@ -309,3 +309,48 @@
     height: 430px !important;
   }
 }
+
+/* =========================================================
+   IANC Eventos v2.4 — igreja e traje no mobile
+   ========================================================= */
+@media (max-width: 650px) {
+  .church-name {
+    width: 100%;
+    margin: -52px auto 10px !important;
+    padding: 0 12px;
+    text-align: center;
+    color: #4b2a0d !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    letter-spacing: 1.7px !important;
+    line-height: 1.35;
+    text-shadow:
+      0 1px 0 rgba(255,255,255,1),
+      0 2px 3px rgba(255,255,255,.95),
+      0 5px 12px rgba(55,28,8,.48) !important;
+    position: relative;
+    z-index: 3;
+  }
+
+  .hero-theme {
+    margin-top: 0 !important;
+  }
+
+  .hero-info-item.attire {
+    max-width: none !important;
+  }
+
+  .hero-info-item.attire span {
+    color: #715f4c !important;
+    font-size: 11px !important;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 390px) {
+  .church-name {
+    margin-top: -44px !important;
+    font-size: 9px !important;
+    letter-spacing: 1.35px !important;
+  }
+}
