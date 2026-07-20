@@ -798,3 +798,89 @@
     height: 34px !important;
   }
 }
+
+/* =========================================================
+   IANC Eventos v3.0 — mobile final
+   ========================================================= */
+@media (max-width: 650px) {
+  .church-name {
+    margin-bottom: 42px !important;
+    padding-bottom: 30px !important;
+  }
+
+  .church-name .church-ornament {
+    bottom: 2px !important;
+    width: min(310px, 82%) !important;
+    gap: 7px !important;
+  }
+
+  .church-name .church-ornament i {
+    width: 82px !important;
+  }
+
+  .church-name .church-ornament b {
+    font-size: 15px !important;
+  }
+
+  .hero-theme {
+    margin-top: 24px !important;
+  }
+
+  .attire-palette {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    width: 100% !important;
+    margin-top: 12px !important;
+    overflow: visible !important;
+  }
+
+  .attire-palette .tone {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    display: grid !important;
+    grid-template-rows: 34px auto !important;
+    justify-items: center !important;
+    gap: 5px !important;
+    font-size: 7px !important;
+    line-height: 1.05 !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+
+  .attire-palette .tone i {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 6px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .church-name {
+    margin-bottom: 38px !important;
+  }
+
+  .church-name .church-ornament {
+    width: min(270px, 84%) !important;
+  }
+
+  .church-name .church-ornament i {
+    width: 68px !important;
+  }
+
+  .attire-palette {
+    gap: 3px !important;
+  }
+
+  .attire-palette .tone {
+    grid-template-rows: 30px auto !important;
+    font-size: 6.5px !important;
+  }
+
+  .attire-palette .tone i {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
