@@ -420,3 +420,96 @@
     margin-top: 14px !important;
   }
 }
+
+/* =========================================================
+   IANC Eventos v2.6 — organização final do mobile
+   ========================================================= */
+@media (max-width: 650px) {
+  .hero-inner {
+    padding-top: 34px !important;
+  }
+
+  .church-name {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: calc(100% - 24px) !important;
+    margin: 0 auto !important;
+    padding: 0 4px !important;
+    color: #3c210c !important;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    letter-spacing: 1.75px !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    z-index: 5 !important;
+    text-shadow:
+      0 1px 0 rgba(255,255,255,1),
+      0 3px 5px rgba(255,255,255,.92),
+      0 7px 16px rgba(52,26,7,.50) !important;
+  }
+
+  .hero-theme {
+    margin: 54px auto 8px !important;
+  }
+
+  .attire-palette {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(74px, 1fr)) !important;
+    gap: 12px 8px !important;
+    width: 100% !important;
+    margin-top: 12px !important;
+  }
+
+  .attire-palette .tone {
+    display: grid !important;
+    grid-template-rows: 30px auto !important;
+    justify-items: center !important;
+    gap: 6px !important;
+    color: #5d4b37 !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+
+  .attire-palette .tone i {
+    display: block !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 7px !important;
+    border: 1px solid rgba(86,53,16,.38) !important;
+    box-shadow:
+      inset 0 0 0 2px rgba(255,255,255,.62),
+      0 3px 8px rgba(68,40,12,.20) !important;
+  }
+
+  #adminAccessButton {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    margin: 18px auto 0 !important;
+    padding: 8px 12px !important;
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-inner {
+    padding-top: 28px !important;
+  }
+
+  .church-name {
+    font-size: 11px !important;
+    letter-spacing: 1.45px !important;
+  }
+
+  .hero-theme {
+    margin-top: 48px !important;
+  }
+
+  .attire-palette {
+    grid-template-columns: repeat(2, minmax(90px, 1fr)) !important;
+  }
+}
