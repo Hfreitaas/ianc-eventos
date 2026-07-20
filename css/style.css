@@ -587,3 +587,41 @@
       0 5px 18px rgba(255,250,235,.72);
   }
 }
+
+/* =========================================================
+   IANC Eventos v2.4 — identidade da igreja e traje sugerido
+   ========================================================= */
+.church-name {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #8d5d1b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.95),
+    0 4px 14px rgba(92,55,18,.14);
+}
+
+.hero-info-item.attire {
+  max-width: 330px;
+}
+
+.hero-info-item.attire span {
+  display: block;
+  margin-top: 4px;
+  color: #7f6c57;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+@media (min-width: 901px) {
+  .church-name {
+    margin-bottom: 8px;
+  }
+
+  .hero-info {
+    max-width: 980px;
+  }
+}
