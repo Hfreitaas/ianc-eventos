@@ -354,3 +354,69 @@
     letter-spacing: 1.35px !important;
   }
 }
+
+/* =========================================================
+   IANC Eventos v2.5 — correção do topo mobile e paleta
+   ========================================================= */
+@media (max-width: 650px) {
+  .hero-inner {
+    padding-top: 154px !important;
+  }
+
+  .church-name {
+    position: absolute !important;
+    top: 84px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 42px) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+    color: #3f230d !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    letter-spacing: 1.45px !important;
+    line-height: 1.35 !important;
+    z-index: 5 !important;
+    text-shadow:
+      0 1px 0 rgba(255,255,255,1),
+      0 2px 3px rgba(255,255,255,.95),
+      0 5px 12px rgba(55,28,8,.48) !important;
+  }
+
+  .hero-theme {
+    margin: 16px auto 8px !important;
+  }
+
+  .attire-palette {
+    gap: 7px 9px !important;
+    margin-top: 9px !important;
+  }
+
+  .attire-palette .tone {
+    font-size: 10px !important;
+  }
+
+  .attire-palette .tone i {
+    width: 17px !important;
+    height: 17px !important;
+    flex-basis: 17px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-inner {
+    padding-top: 146px !important;
+  }
+
+  .church-name {
+    top: 80px !important;
+    width: calc(100% - 34px) !important;
+    font-size: 9px !important;
+    letter-spacing: 1.15px !important;
+  }
+
+  .hero-theme {
+    margin-top: 14px !important;
+  }
+}
