@@ -599,3 +599,63 @@
     grid-template-columns: repeat(2, minmax(105px, 1fr)) !important;
   }
 }
+
+/* =========================================================
+   IANC Eventos v2.8 — mobile: ícones e paleta
+   ========================================================= */
+@media (max-width: 650px) {
+  .hero-info-item,
+  .hero-info-item.address,
+  .hero-info-item.attire {
+    grid-template-columns: 50px minmax(0, 1fr) !important;
+  }
+
+  .hero-icon {
+    width: 46px !important;
+    height: 46px !important;
+    flex: 0 0 46px !important;
+    font-size: 0 !important;
+  }
+
+  .hero-icon svg {
+    width: 25px !important;
+    height: 25px !important;
+    stroke-width: 1.9 !important;
+  }
+
+  .attire-palette {
+    grid-template-columns: repeat(2, minmax(118px, 1fr)) !important;
+    gap: 18px 12px !important;
+  }
+
+  .attire-palette .tone {
+    grid-template-rows: 58px auto !important;
+    min-width: 0 !important;
+    font-size: 11px !important;
+  }
+
+  .attire-palette .tone i {
+    width: 58px !important;
+    height: 58px !important;
+    border-radius: 10px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-info-item,
+  .hero-info-item.address,
+  .hero-info-item.attire {
+    grid-template-columns: 48px minmax(0, 1fr) !important;
+  }
+
+  .hero-icon {
+    width: 44px !important;
+    height: 44px !important;
+    flex-basis: 44px !important;
+  }
+
+  .hero-icon svg {
+    width: 23px !important;
+    height: 23px !important;
+  }
+}
