@@ -810,3 +810,47 @@
     max-width: 570px;
   }
 }
+
+/* =========================================================
+   IANC Eventos v2.7 — ajustes finais de leitura e proporção
+   ========================================================= */
+.hero-info-item.address {
+  max-width: 100%;
+}
+
+.hero-info-item.address strong {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.hero-icon {
+  width: 54px;
+  height: 54px;
+  font-size: 24px;
+  flex: 0 0 54px;
+}
+
+.hero-info-item {
+  grid-template-columns: 54px 1fr;
+}
+
+.attire-palette .tone i {
+  width: 54px !important;
+  height: 54px !important;
+  border-radius: 10px !important;
+}
+
+.attire-palette .tone {
+  grid-template-rows: 54px auto !important;
+}
+
+@media (min-width: 901px) {
+  .church-name {
+    top: 12px;
+  }
+
+  .hero-inner {
+    padding-top: 112px;
+  }
+}
