@@ -659,3 +659,142 @@
     height: 23px !important;
   }
 }
+
+/* =========================================================
+   IANC Eventos v2.9 — mobile final aprovado
+   ========================================================= */
+@media (max-width: 650px) {
+  .hero-inner {
+    padding-top: 18px !important;
+  }
+
+  .church-name {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: calc(100% - 24px) !important;
+    max-width: none !important;
+    margin: 0 auto 50px !important;
+    padding: 0 10px 26px !important;
+    font-family: "Cormorant Garamond", serif !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.7px !important;
+    line-height: 1.05 !important;
+    color: #5d3410 !important;
+    text-align: center !important;
+  }
+
+  .church-name::before,
+  .church-name::after {
+    bottom: 9px !important;
+    width: 29% !important;
+  }
+
+  .church-name .church-ornament {
+    bottom: 0 !important;
+    font-size: 22px !important;
+  }
+
+  .hero-theme {
+    margin: 34px auto 8px !important;
+  }
+
+  .hero-info {
+    gap: 10px !important;
+  }
+
+  .hero-info-item,
+  .hero-info-item.address,
+  .hero-info-item.attire {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 54px !important;
+    padding: 9px 12px !important;
+    grid-template-columns: 32px minmax(0, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .hero-icon {
+    width: 30px !important;
+    height: 30px !important;
+    flex: 0 0 30px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .hero-icon svg {
+    width: 28px !important;
+    height: 28px !important;
+    stroke-width: 1.9 !important;
+  }
+
+  .hero-info-item small {
+    font-size: 11px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .hero-info-item strong {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  .hero-info-item.address strong {
+    overflow-wrap: anywhere !important;
+  }
+
+  .attire-palette {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    width: 100% !important;
+    margin-top: 14px !important;
+  }
+
+  .attire-palette .tone {
+    display: grid !important;
+    grid-template-rows: 40px auto !important;
+    justify-items: center !important;
+    min-width: 0 !important;
+    gap: 5px !important;
+    font-size: 8px !important;
+    line-height: 1.05 !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+
+  .attire-palette .tone i {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 7px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .church-name {
+    font-size: 18px !important;
+    letter-spacing: 1.4px !important;
+    margin-bottom: 46px !important;
+  }
+
+  .hero-theme {
+    margin-top: 30px !important;
+  }
+
+  .attire-palette {
+    gap: 4px !important;
+  }
+
+  .attire-palette .tone {
+    grid-template-rows: 34px auto !important;
+    font-size: 7px !important;
+  }
+
+  .attire-palette .tone i {
+    width: 34px !important;
+    height: 34px !important;
+  }
+}
