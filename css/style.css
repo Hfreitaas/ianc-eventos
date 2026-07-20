@@ -1051,3 +1051,76 @@
     max-width: 760px;
   }
 }
+
+/* =========================================================
+   IANC Eventos v3.0 — arabesco corrigido e paleta horizontal
+   ========================================================= */
+.church-name {
+  padding-bottom: 34px;
+}
+
+.church-name::before,
+.church-name::after {
+  display: none !important;
+}
+
+.church-name .church-ornament {
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: min(420px, 78%);
+  color: #9b631c;
+  line-height: 1;
+}
+
+.church-name .church-ornament i {
+  display: block;
+  width: 110px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(155,99,28,.72));
+}
+
+.church-name .church-ornament i:last-child {
+  transform: scaleX(-1);
+}
+
+.church-name .church-ornament b {
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  transform: rotate(45deg);
+  text-shadow: 0 1px 0 rgba(255,255,255,.85);
+}
+
+.attire-palette {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+.attire-palette .tone {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  display: grid !important;
+  grid-template-rows: 46px auto !important;
+  justify-items: center !important;
+  gap: 6px !important;
+  font-size: 9px !important;
+  line-height: 1.1 !important;
+  text-align: center !important;
+}
+
+.attire-palette .tone i {
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 8px !important;
+}
