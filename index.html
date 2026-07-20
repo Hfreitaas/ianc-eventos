@@ -563,6 +563,128 @@
     }
   }
 
+
+  /* MOBILE PREMIUM:
+     conteúdo principal sobre a própria imagem, com degradê suave apenas na base */
+  @media (max-width: 650px) {
+    .hero {
+      position: relative !important;
+      min-height: 900px !important;
+      overflow: hidden !important;
+      background-image: url("assets/portal-mobile.jpg") !important;
+      background-position: center top !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+    }
+
+    .hero::before {
+      content: "" !important;
+      position: absolute !important;
+      inset: 0 !important;
+      pointer-events: none !important;
+      z-index: 1 !important;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.00) 0%,
+          rgba(255,255,255,0.00) 32%,
+          rgba(255,250,238,0.10) 43%,
+          rgba(255,248,232,0.45) 58%,
+          rgba(255,246,227,0.82) 72%,
+          rgba(255,246,227,0.98) 88%,
+          rgba(255,246,227,1) 100%
+        ) !important;
+    }
+
+    .hero-inner {
+      position: relative !important;
+      z-index: 2 !important;
+      min-height: 900px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: center !important;
+      padding-top: 300px !important;
+      padding-bottom: 26px !important;
+    }
+
+    .hero-content {
+      width: min(94%, 520px) !important;
+      margin: 0 auto !important;
+      padding: 16px 12px 20px !important;
+      text-align: center !important;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px !important;
+      font-size: 13px !important;
+      letter-spacing: 2.2px !important;
+      line-height: 1.35 !important;
+      color: #8d5a11 !important;
+      text-shadow:
+        0 1px 0 rgba(255,255,255,.95),
+        0 2px 9px rgba(255,255,255,.75) !important;
+    }
+
+    .event-title {
+      margin: 0 0 12px !important;
+      line-height: .9 !important;
+      text-align: center !important;
+      text-shadow:
+        0 1px 0 rgba(255,255,255,.95),
+        0 3px 12px rgba(255,255,255,.72) !important;
+    }
+
+    .hero-subtitle {
+      max-width: 360px !important;
+      margin: 0 auto 20px !important;
+      text-align: center !important;
+      line-height: 1.45 !important;
+      text-shadow:
+        0 1px 0 rgba(255,255,255,.98),
+        0 2px 8px rgba(255,255,255,.78) !important;
+    }
+
+    .hero-info {
+      width: 100% !important;
+      margin-top: 4px !important;
+      gap: 10px !important;
+    }
+
+    .cta {
+      margin-top: 14px !important;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .hero,
+    .hero-inner {
+      min-height: 860px !important;
+    }
+
+    .hero-inner {
+      padding-top: 270px !important;
+    }
+
+    .event-title {
+      font-size: 56px !important;
+    }
+
+    .eyebrow {
+      font-size: 12px !important;
+      letter-spacing: 1.8px !important;
+    }
+
+    .hero-subtitle {
+      font-size: 16px !important;
+    }
+  }
+
 </style>
 
 <style>
