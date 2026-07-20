@@ -513,3 +513,89 @@
     grid-template-columns: repeat(2, minmax(90px, 1fr)) !important;
   }
 }
+
+/* =========================================================
+   IANC Eventos v2.7 — correções finais do mobile
+   ========================================================= */
+@media (max-width: 650px) {
+  .hero-inner {
+    padding-top: 16px !important;
+  }
+
+  .church-name {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    top: 0 !important;
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+  }
+
+  .hero-theme {
+    margin-top: 58px !important;
+  }
+
+  .hero-info-item,
+  .hero-info-item.address,
+  .hero-info-item.attire {
+    width: 100% !important;
+    max-width: none !important;
+    grid-template-columns: 62px minmax(0, 1fr) !important;
+  }
+
+  .hero-info-item.address strong {
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+    line-height: 1.4 !important;
+  }
+
+  .hero-icon {
+    width: 58px !important;
+    height: 58px !important;
+    font-size: 26px !important;
+    flex: 0 0 58px !important;
+  }
+
+  .attire-palette {
+    grid-template-columns: repeat(2, minmax(120px, 1fr)) !important;
+    gap: 16px 12px !important;
+  }
+
+  .attire-palette .tone {
+    grid-template-rows: 56px auto !important;
+    font-size: 11px !important;
+  }
+
+  .attire-palette .tone i {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 11px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .church-name {
+    font-size: 10px !important;
+  }
+
+  .hero-theme {
+    margin-top: 52px !important;
+  }
+
+  .hero-info-item,
+  .hero-info-item.address,
+  .hero-info-item.attire {
+    grid-template-columns: 58px minmax(0, 1fr) !important;
+  }
+
+  .hero-icon {
+    width: 54px !important;
+    height: 54px !important;
+    font-size: 24px !important;
+    flex-basis: 54px !important;
+  }
+
+  .attire-palette {
+    grid-template-columns: repeat(2, minmax(105px, 1fr)) !important;
+  }
+}
