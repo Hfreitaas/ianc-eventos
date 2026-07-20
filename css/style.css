@@ -625,3 +625,86 @@
     max-width: 980px;
   }
 }
+
+/* =========================================================
+   IANC Eventos v2.5 — posicionamento da igreja e paleta visual
+   ========================================================= */
+.church-name {
+  display: block;
+  width: 100%;
+  margin: 0 0 18px;
+  text-align: center;
+  color: #7f5018;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.96),
+    0 4px 16px rgba(92,55,18,.18);
+}
+
+.hero-inner {
+  padding-top: 92px;
+}
+
+.hero-theme {
+  align-self: flex-start;
+}
+
+.attire-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 10px;
+  margin-top: 8px;
+}
+
+.attire-palette .tone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #6d5b47;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.attire-palette .tone i {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(116,76,28,.28);
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.55),
+    0 2px 5px rgba(87,54,18,.12);
+}
+
+.tone-champagne i { background: #ead7aa; }
+.tone-beige i { background: #d8c2a2; }
+.tone-nude i { background: #d7ad95; }
+.tone-offwhite i { background: #f7f1e5; }
+.tone-gold i { background: #c9a45d; }
+
+@media (min-width: 901px) {
+  .church-name {
+    position: absolute;
+    top: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: calc(100% - 360px);
+    margin: 0;
+    font-size: 17px;
+    letter-spacing: 3.4px;
+    z-index: 4;
+  }
+
+  .hero-inner {
+    padding-top: 112px;
+  }
+
+  .hero-info-item.attire {
+    max-width: 420px;
+  }
+}
