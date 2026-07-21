@@ -1018,3 +1018,72 @@
     height: 29px !important;
   }
 }
+
+/* =========================================================
+   IANC Eventos v3.3 — correção definitiva da paleta
+   ========================================================= */
+@media (max-width: 650px) {
+  .attire-ornament {
+    width: 118px !important;
+    margin: 6px auto 10px !important;
+  }
+
+  .attire-ornament svg {
+    height: 20px !important;
+    stroke-width: 1.35 !important;
+  }
+
+  .attire-palette {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+    width: 100% !important;
+  }
+
+  .attire-palette .tone {
+    min-width: 0 !important;
+    display: grid !important;
+    grid-template-rows: 34px 28px !important;
+    justify-items: center !important;
+    align-items: start !important;
+    gap: 5px !important;
+    padding: 0 !important;
+    font-size: 6.8px !important;
+    line-height: 1.04 !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.08px !important;
+    text-align: center !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    overflow: visible !important;
+    hyphens: none !important;
+  }
+
+  .attire-palette .tone i {
+    width: 34px !important;
+    height: 34px !important;
+    margin: 0 auto !important;
+  }
+
+  .attire-palette .tone br {
+    display: block !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .attire-palette {
+    gap: 4px !important;
+  }
+
+  .attire-palette .tone {
+    grid-template-rows: 31px 27px !important;
+    font-size: 6.1px !important;
+    letter-spacing: -0.12px !important;
+  }
+
+  .attire-palette .tone i {
+    width: 31px !important;
+    height: 31px !important;
+  }
+}
