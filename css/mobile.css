@@ -884,3 +884,91 @@
     height: 30px !important;
   }
 }
+
+/* =========================================================
+   IANC Eventos v3.1 — correção final mobile
+   ========================================================= */
+@media (max-width: 650px) {
+  .church-name {
+    padding-bottom: 34px !important;
+  }
+
+  .church-name .church-ornament {
+    width: min(280px, 78%) !important;
+    bottom: 0 !important;
+  }
+
+  .church-name .church-ornament svg {
+    height: 26px !important;
+    stroke-width: 1.45 !important;
+  }
+
+  .hero-info-item.attire {
+    display: block !important;
+    padding: 14px 12px 16px !important;
+  }
+
+  .hero-info-item.attire > .hero-icon {
+    display: none !important;
+  }
+
+  .hero-info-item.attire > div {
+    width: 100% !important;
+  }
+
+  .hero-info-item.attire small,
+  .hero-info-item.attire strong {
+    text-align: center !important;
+  }
+
+  .attire-palette {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    align-items: start !important;
+    gap: 4px !important;
+    width: 100% !important;
+    margin-top: 14px !important;
+  }
+
+  .attire-palette .tone {
+    display: grid !important;
+    grid-template-rows: 36px auto !important;
+    justify-items: center !important;
+    align-items: start !important;
+    min-width: 0 !important;
+    gap: 5px !important;
+    font-size: 7px !important;
+    line-height: 1.05 !important;
+    text-align: center !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+  }
+
+  .attire-palette .tone i {
+    width: 36px !important;
+    height: 36px !important;
+    margin: 0 !important;
+    border-radius: 7px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .church-name .church-ornament {
+    width: min(250px, 80%) !important;
+  }
+
+  .attire-palette {
+    gap: 3px !important;
+  }
+
+  .attire-palette .tone {
+    grid-template-rows: 32px auto !important;
+    font-size: 6.4px !important;
+  }
+
+  .attire-palette .tone i {
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
