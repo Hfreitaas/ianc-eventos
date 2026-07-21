@@ -1181,3 +1181,39 @@
 .attire-palette .tone {
   align-self: start !important;
 }
+
+/* =========================================================
+   IANC Eventos v3.3 — paleta sem sobreposição e arabesco
+   ========================================================= */
+.attire-ornament {
+  display: block;
+  width: 150px;
+  margin: 8px auto 10px;
+  color: #b17822;
+}
+
+.attire-ornament svg {
+  display: block;
+  width: 100%;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.attire-palette .tone {
+  min-width: 0 !important;
+  overflow: hidden;
+}
+
+.attire-palette .tone br {
+  display: block;
+}
+
+.attire-palette .tone {
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+}
